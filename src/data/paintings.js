@@ -15,6 +15,10 @@
 // local dev (served at "/") and on GitHub Pages (served at "/behnke/").
 const asset = (path) => import.meta.env.BASE_URL + path
 
+// `stripeLink`: paste this piece's Stripe Payment Link here (https://buy.stripe.com/…)
+// to enable the "Buy Now" card-payment button. Leave '' to show only the
+// inquiry option for that piece. See src/config.js for how to create one.
+
 export const paintings = [
   {
     id: 'pink-static',
@@ -24,6 +28,7 @@ export const paintings = [
     medium: 'Spray-paint, Acrylic, and Mixed Texture',
     price: '$3,400', // placeholder
     status: 'Original Available',
+    stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/pink-static-web.jpg'),
     hiRes: asset('artwork/pink-static.jpg'),
     notes:
@@ -37,6 +42,7 @@ export const paintings = [
     medium: 'Spray-paint, Acrylic, and Mixed Texture',
     price: '$2,800', // placeholder
     status: 'Original Available',
+    stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/tidewrack-web.jpg'),
     hiRes: asset('artwork/tidewrack.jpg'),
     notes:
@@ -50,6 +56,7 @@ export const paintings = [
     medium: 'Spray-paint, Acrylic, and Mixed Texture',
     price: '$4,200', // placeholder
     status: 'Original Available',
+    stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/bleeding-standard-web.jpg'),
     hiRes: asset('artwork/bleeding-standard.jpg'),
     notes:

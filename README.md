@@ -45,7 +45,7 @@ piece thumbnail, price, status, and a Name / Shipping Address / Email form.
 | --- | --- | --- |
 | Paintings (images, hi-res, titles, prices, notes) | `src/data/paintings.js` | Placeholders use `picsum.photos`. Set `hiRes` to your largest file for a crisp zoom lens. |
 | Audio tracks / streams | `src/data/channels.js` | Point `src` at `/public/audio/*.mp3` or a streaming URL. |
-| Payment integration | `src/components/CheckoutCart.jsx` → `handlePayment` | A commented-out **Stripe Checkout** redirect and a **Formspree** webhook are both stubbed in; swap in whichever you use. |
+| Payments & inquiries | `src/config.js` + `stripeLink` in `src/data/paintings.js` | **Both live, no backend.** Paste a Formspree form ID in `config.js` to enable inquiries; paste a Stripe **Payment Link** per piece to enable "Buy Now". Both values are public and safe to commit. |
 | Lighting presets | `src/components/StudioLightSwitch.jsx` | Tweak `stage`, `artFilter`, `artShadow`. |
 
 ## Project structure
