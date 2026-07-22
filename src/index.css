@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-ink-900 text-neutral-200 font-mono antialiased;
+  /* Matte charcoal base with a faint vignette so it never reads pure black */
+  background-image:
+    radial-gradient(120% 80% at 50% -10%, rgba(0, 229, 255, 0.05), transparent 60%),
+    radial-gradient(100% 60% at 100% 110%, rgba(255, 45, 149, 0.05), transparent 60%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* Brutalist display type                                              */
+/* ------------------------------------------------------------------ */
+.font-display {
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.85);
+  color: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/* Gritty film-grain overlay (SVG turbulence, GPU-cheap)              */
+/* ------------------------------------------------------------------ */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtle scanline texture for panels */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* ------------------------------------------------------------------ */
+/* RGB-split glitch used on artwork card hover                        */
+/* ------------------------------------------------------------------ */
+.glitch-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.group:hover .glitch-r {
+  opacity: 0.55;
+  animation: glitch-r 0.5s steps(2) infinite;
+}
+.group:hover .glitch-b {
+  opacity: 0.55;
+  animation: glitch-b 0.5s steps(2) infinite;
+}
+@keyframes glitch-r {
+  0%, 100% { transform: translate(0, 0); filter: hue-rotate(-40deg); }
+  50% { transform: translate(3px, -2px); filter: hue-rotate(-40deg); }
+}
+@keyframes glitch-b {
+  0%, 100% { transform: translate(0, 0); filter: hue-rotate(160deg); }
+  50% { transform: translate(-3px, 2px); filter: hue-rotate(160deg); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Waveform equalizer bars (audio visualizer)                         */
+/* ------------------------------------------------------------------ */
+.eq-bar {
+  width: 3px;
+  transform-origin: bottom;
+  animation: eq 0.9s ease-in-out infinite;
+}
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.2); }
+  50% { transform: scaleY(1); }
+}
+
+/* ------------------------------------------------------------------ */
+/* Custom scrollbars                                                   */
+/* ------------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a33;
+  border: 2px solid #0b0b0d;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00e5ff;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
