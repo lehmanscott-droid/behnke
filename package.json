@@ -2,7 +2,7 @@
   "name": "wicker-park-hub",
   "version": "0.1.0",
   "private": true,
-  "description": "Wicker Park Hub — a neighborhood web app with a real-time emergency banner and community feed.",
+  "description": "Marion Ct. Hub — a neighborhood web app with a real-time emergency banner and community feed.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

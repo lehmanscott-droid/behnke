@@ -4,8 +4,8 @@ This file provides guidance to Claude Code when working in this repository.
 
 ## Project
 
-**Wicker Park Hub** — a mobile-responsive neighborhood web app for the Wicker
-Park community. It pairs a real-time emergency banner (published by "block
+**Marion Ct. Hub** — a mobile-responsive neighborhood web app for the Marion
+Ct. community. It pairs a real-time emergency banner (published by "block
 captains") with a community feed of news, events, photos, and trusted
 home-repair recommendations.
 

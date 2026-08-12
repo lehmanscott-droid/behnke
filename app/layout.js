@@ -2,9 +2,9 @@ import "./globals.css";
 import { HubProvider } from "@/context/HubContext";
 
 export const metadata = {
-  title: "Wicker Park Hub — Your Neighborhood, Connected",
+  title: "Marion Ct. Hub — Your Neighborhood, Connected",
   description:
-    "A community hub for Wicker Park residents: real-time neighborhood alerts, local news, events, photos, and trusted home-repair recommendations.",
+    "A community hub for Marion Ct. residents: real-time neighborhood alerts, local news, events, photos, and trusted home-repair recommendations.",
 };
 
 export const viewport = {
