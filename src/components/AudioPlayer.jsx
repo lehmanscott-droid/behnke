@@ -83,14 +83,23 @@ export default function AudioPlayer() {
   useEffect(() => {
     const els = channels.map((c) => getEl(c.id)).filter(Boolean)
     const onEnd = () => setPlaying(false)
+    // Keep a handle on each pause listener so cleanup can remove it; otherwise
+    // every channel switch stacks another listener bound to a stale activeId.
+    const onPause = new Map()
     els.forEach((el) => {
       el.addEventListener('ended', onEnd)
-      el.addEventListener('pause', () => {
+      const handler = () => {
         // Only reflect pauses on the active element.
         if (el === getEl(activeId)) setPlaying(!el.paused)
-      })
+      }
+      onPause.set(el, handler)
+      el.addEventListener('pause', handler)
     })
-    return () => els.forEach((el) => el.removeEventListener('ended', onEnd))
+    return () =>
+      els.forEach((el) => {
+        el.removeEventListener('ended', onEnd)
+        el.removeEventListener('pause', onPause.get(el))
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId])
 
