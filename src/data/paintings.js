@@ -6,8 +6,11 @@
 //   - `image`  : lighter version shown in the grid + modal (*-web.jpg)
 //   - `hiRes`  : sharper version fed to the Macro Texture Zoom lens (*.jpg)
 //
-// Pink Static has its real details. Tidewrack and Bleeding Standard still
-// have PLACEHOLDER titles, prices and dimensions — edit them freely. To add more pieces later,
+// Pink Static has its real details. Tidewrack and Bleeding Standard have real
+// dimensions and medium, but their titles, years and prices are still
+// PLACEHOLDERS — edit them freely.
+//   - `framing` : shown in the modal (the wall photos are framed mockups, so
+//                 say plainly what the buyer actually gets) To add more pieces later,
 // upload the image to /public/artwork and copy one of these blocks.
 // ---------------------------------------------------------------------------
 
@@ -24,8 +27,9 @@ export const paintings = [
     id: 'pink-static',
     title: 'Pink Static',
     year: 2026,
-    dimensions: '30 × 24 in',
+    dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
@@ -38,8 +42,9 @@ export const paintings = [
     id: 'tidewrack',
     title: 'Tidewrack', // placeholder title — rename freely
     year: 2024,
-    dimensions: '24 × 30 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
     price: '$2,800', // placeholder
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
@@ -52,8 +57,9 @@ export const paintings = [
     id: 'bleeding-standard',
     title: 'Bleeding Standard', // placeholder title — rename freely
     year: 2023,
-    dimensions: '40 × 30 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
     price: '$4,200', // placeholder
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
