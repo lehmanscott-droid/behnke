@@ -1,4 +1,4 @@
-# BEHNKE // Studio Wall
+# Scott Lehman Art
 
 A single-page React art portfolio for abstract spray-paint, acrylic and
 mixed-texture work. Dark, gritty, brutalist — built with **React + Vite +

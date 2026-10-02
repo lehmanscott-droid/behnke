@@ -6,8 +6,8 @@
 //   - `image`  : lighter version shown in the grid + modal (*-web.jpg)
 //   - `hiRes`  : sharper version fed to the Macro Texture Zoom lens (*.jpg)
 //
-// The TITLES, PRICES, DIMENSIONS and NOTES below are placeholders I chose so
-// the site reads well — edit any of them freely. To add more pieces later,
+// Pink Static has its real details. Tidewrack and Bleeding Standard still
+// have PLACEHOLDER titles, prices and dimensions — edit them freely. To add more pieces later,
 // upload the image to /public/artwork and copy one of these blocks.
 // ---------------------------------------------------------------------------
 
@@ -22,11 +22,11 @@ const asset = (path) => import.meta.env.BASE_URL + path
 export const paintings = [
   {
     id: 'pink-static',
-    title: 'Pink Static', // placeholder title — rename freely
-    year: 2024,
-    dimensions: '30 × 40 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
-    price: '$3,400', // placeholder
+    title: 'Pink Static',
+    year: 2026,
+    dimensions: '30 × 24 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    price: '$480',
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/pink-static-web.jpg'),

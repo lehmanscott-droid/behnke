@@ -4,7 +4,7 @@ Guidance for Claude Code (and other AI assistants) working in this repository.
 
 ## What this is
 
-**BEHNKE // Studio Wall** — a single-page React portfolio site for abstract
+**Scott Lehman Art** (repo: `behnke`) — a single-page React portfolio site for abstract
 spray-paint, acrylic and mixed-texture work. Dark, gritty, brutalist aesthetic.
 Built with **React 18 + Vite + Tailwind CSS + Framer Motion**. No backend.
 

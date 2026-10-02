@@ -40,8 +40,8 @@ export default function App() {
               Underground Studio · Est. MMXX
             </p>
             <h1 className="font-display text-6xl leading-[0.85] text-white sm:text-7xl md:text-8xl">
-              <span className="block">BEHNKE</span>
-              <span className="block text-stroke">STUDIO WALL</span>
+              <span className="block">SCOTT LEHMAN</span>
+              <span className="block text-stroke">ART</span>
             </h1>
           </div>
           <p className="max-w-xs font-mono text-xs leading-relaxed text-neutral-400 md:text-right">
@@ -70,7 +70,7 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-white/10 px-4 py-10 sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
-          <span>BEHNKE // Studio Wall</span>
+          <span>Scott Lehman Art</span>
           <span>All works © the artist · Prints & originals available</span>
         </div>
       </footer>
