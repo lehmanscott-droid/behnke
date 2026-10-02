@@ -37,7 +37,7 @@ export default function App() {
         <div className="flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-3 inline-block border border-white/15 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.35em] text-neutral-400">
-              Underground Studio · Est. MMXX
+              Underground Studio · Est. MMXXV
             </p>
             <h1 className="font-display text-6xl leading-[0.85] text-white sm:text-7xl md:text-8xl">
               <span className="block">SCOTT LEHMAN</span>
@@ -71,7 +71,7 @@ export default function App() {
       <footer className="border-t border-white/10 px-4 py-10 sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
           <span>Scott Lehman Art</span>
-          <span>All works © the artist · Prints & originals available</span>
+          <span>All works © the artist · Originals available</span>
         </div>
       </footer>
 
