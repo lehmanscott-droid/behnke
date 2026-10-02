@@ -22,11 +22,14 @@ not exist. Do not invent them.
 
 ## Deployment
 
-The site deploys to **GitHub Pages** as a project page at
-`https://<user>.github.io/behnke/`. Because of this, `vite.config.js` sets
-`base: '/behnke/'` so every asset URL is prefixed with `/behnke/`. Keep `dev`,
-`build`, and `preview` all agreeing on this base. If the site moves to a custom
-domain or the repo root, change `base` to `'/'`.
+The site deploys to **Vercel** at the root of its own domain,
+`https://scottlehmanart.com`. Vercel builds every push: `main` goes to
+production, and every pull request gets its own preview URL. There is no
+GitHub Actions deploy workflow and GitHub Pages is not used.
+
+`vite.config.js` sets `base: '/'`. Keep `dev`, `build`, and `preview` all
+agreeing on this base. Always reference files in `public/` through
+`import.meta.env.BASE_URL` (see the `asset()` helper in `paintings.js`).
 
 ## Architecture
 

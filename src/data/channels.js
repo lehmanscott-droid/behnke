@@ -11,9 +11,8 @@
 // note) until you supply real audio. Swap them for your tracks or live streams.
 // ---------------------------------------------------------------------------
 
-// Prefix files in /public with the app's base path so they resolve both in
-// local dev and on GitHub Pages (served at "/behnke/"). Streaming URLs don't
-// need this — paste them into `src` as-is.
+// Prefix files in /public with the app's base path (see `base` in
+// vite.config.js). Streaming URLs don't need this — paste them into `src` as-is.
 const asset = (path) => import.meta.env.BASE_URL + path
 
 export const channels = [

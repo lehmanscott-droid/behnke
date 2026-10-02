@@ -12,8 +12,8 @@
 // /public/artwork and copy one of these blocks.
 // ---------------------------------------------------------------------------
 
-// Prefix files in /public with the app's base path so they resolve both in
-// local dev (served at "/") and on GitHub Pages (served at "/behnke/").
+// Prefix files in /public with the app's base path (see `base` in
+// vite.config.js).
 const asset = (path) => import.meta.env.BASE_URL + path
 
 // `stripeLink`: paste this piece's Stripe Payment Link here (https://buy.stripe.com/…)
