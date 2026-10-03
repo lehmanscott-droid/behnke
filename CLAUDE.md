@@ -44,7 +44,11 @@ three) eagerly from the main bundle. It sits at `z-[60]`, below the modal
 (`z-[65]`) and checkout (`z-[70]`), so tapping a painting in the walk opens the
 normal popup and buying works the same. Paintings are laid out automatically
 from `paintings.js`; every texture (brick, concrete, graffiti, wall labels) is
-drawn procedurally in `src/gallery/textures.js`, so no third-party assets. The site has no background music: the old vinyl
+drawn procedurally in `src/gallery/textures.js`, so no third-party assets.
+Movement is step-based (`stop` index: entrance → each painting → end wall),
+not scroll-based: Back/Next buttons, a ≥40 px swipe, one wheel notch or arrow
+keys each move exactly one stop. The brick is a seamless 1.6 m tile with a
+matching bump map (`brickTextures()`). The site has no background music: the old vinyl
 AudioPlayer was removed on purpose (licensing, and it covered content on
 phones). Don't add it back without asking.
 
