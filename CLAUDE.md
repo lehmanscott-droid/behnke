@@ -138,6 +138,10 @@ client bundle.
 - Match the existing code style: functional components, hooks, Tailwind utility
   classes, and the descriptive block comments already present in `App.jsx` and
   `config.js`.
+- Every painting is shown on the same warehouse wall at true scale:
+  `scripts/mockup/mockup.py` pastes the (untouched) painting onto
+  `scripts/mockup/warehouse-wall.jpg` and writes `<id>.jpg` + `<id>-web.jpg`.
+  Use it for every new piece so the wall stays consistent.
 - Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal,
   `<id>.jpg` for the zoom lens (`hiRes`), and `<id>-canvas.jpg` (the painting
-  alone, cropped out of the room photo, no frame) for the warehouse walk.
+  alone, straightened and cropped to its edges) for the warehouse walk.
