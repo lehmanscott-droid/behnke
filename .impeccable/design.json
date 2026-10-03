@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T12:26:20+00:00",
+  "title": "Design System: Scott Lehman Art",
+  "extensions": {
+    "colorMeta": {
+      "ink-900": {
+        "role": "neutral",
+        "displayName": "Warehouse Black",
+        "canonical": "oklch(15.1% 0.004 285.9)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#242426",
+          "#3f3f42",
+          "#5d5d60",
+          "#7d7d80",
+          "#9e9ea1",
+          "#c4c4c7",
+          "#eeeef1"
+        ]
+      },
+      "ink-800": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "canonical": "oklch(18.4% 0.008 285.6)",
+        "tonalRamp": [
+          "#0b0b0e",
+          "#232328",
+          "#3f3f44",
+          "#5d5d62",
+          "#7d7d82",
+          "#9e9ea3",
+          "#c3c3c9",
+          "#eeeef4"
+        ]
+      },
+      "ink-700": {
+        "role": "neutral",
+        "displayName": "Raised Panel",
+        "canonical": "oklch(20.7% 0.010 285.5)",
+        "tonalRamp": [
+          "#0b0b0f",
+          "#232329",
+          "#3f3f45",
+          "#5d5d63",
+          "#7c7c83",
+          "#9e9ea4",
+          "#c3c3ca",
+          "#eeeef5"
+        ]
+      },
+      "ink-600": {
+        "role": "neutral",
+        "displayName": "Seam",
+        "canonical": "oklch(24.2% 0.013 285.4)",
+        "tonalRamp": [
+          "#0a0a11",
+          "#23232a",
+          "#3f3f47",
+          "#5d5d65",
+          "#7c7c85",
+          "#9d9da7",
+          "#c3c3cd",
+          "#ededf7"
+        ]
+      },
+      "ink-500": {
+        "role": "neutral",
+        "displayName": "Seam Light",
+        "canonical": "oklch(28.9% 0.016 285.3)",
+        "tonalRamp": [
+          "#0a0a12",
+          "#23232c",
+          "#3f3f48",
+          "#5c5c67",
+          "#7c7c87",
+          "#9d9da8",
+          "#c3c3cf",
+          "#ededf9"
+        ]
+      },
+      "electric": {
+        "role": "primary",
+        "displayName": "Live Wire Cyan",
+        "canonical": "oklch(84.4% 0.146 209.3)",
+        "tonalRamp": [
+          "#001017",
+          "#002e3c",
+          "#004f65",
+          "#007189",
+          "#0093ac",
+          "#00b6cf",
+          "#6ed6e7",
+          "#daf4f9"
+        ]
+      },
+      "hotpink": {
+        "role": "secondary",
+        "displayName": "Hot Pink Signal",
+        "canonical": "oklch(66.5% 0.249 357.3)",
+        "tonalRamp": [
+          "#1b010b",
+          "#440724",
+          "#721340",
+          "#a31f5e",
+          "#d72d7e",
+          "#ec6d9f",
+          "#f9a9c5",
+          "#ffe7ee"
+        ]
+      },
+      "acid": {
+        "role": "tertiary",
+        "displayName": "Acid Confirm",
+        "canonical": "oklch(92.7% 0.231 124.4)",
+        "tonalRamp": [
+          "#070e00",
+          "#1a2a00",
+          "#314a00",
+          "#496b00",
+          "#638f00",
+          "#88af1f",
+          "#b6d088",
+          "#eaf2de"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone",
+        "canonical": "oklch(92.2% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "oklch(71.5% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "smoke": {
+        "role": "neutral",
+        "displayName": "Smoke",
+        "canonical": "oklch(55.6% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "soot": {
+        "role": "neutral",
+        "displayName": "Soot",
+        "canonical": "oklch(43.9% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name only (60/72/96px)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Painting title in the viewer, warehouse banner, section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Tile captions, button labels."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Notes, policies, forms."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tags, spec labels, footer, index numbers."
+      }
+    },
+    "shadows": [
+      {
+        "name": "neon",
+        "value": "0 0 0 1px rgba(0,229,255,0.6), 0 0 24px rgba(0,229,255,0.25)",
+        "purpose": "Zoom lens and focused inputs."
+      },
+      {
+        "name": "pink",
+        "value": "0 0 0 1px rgba(255,45,149,0.6), 0 0 24px rgba(255,45,149,0.25)",
+        "purpose": "Defined, not used yet."
+      },
+      {
+        "name": "drawer",
+        "value": "-20px 0 60px rgba(0,0,0,0.6)",
+        "purpose": "Checkout drawer over the page."
+      },
+      {
+        "name": "art-spotlight",
+        "value": "0 40px 80px rgba(0,0,0,0.75)",
+        "purpose": "Painting under Dim Gallery Spotlight (default)."
+      },
+      {
+        "name": "art-daylight",
+        "value": "0 24px 50px rgba(0,0,0,0.35)",
+        "purpose": "Painting under Daylight Studio."
+      },
+      {
+        "name": "art-uv",
+        "value": "0 0 70px rgba(150,60,255,0.5)",
+        "purpose": "Painting under UV Blacklight Look."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hover",
+        "value": "200–300ms ease",
+        "purpose": "Borders, colours, captions."
+      },
+      {
+        "name": "wash",
+        "value": "500ms",
+        "purpose": "Inquire button wash; lighting preset changes."
+      },
+      {
+        "name": "banner",
+        "value": "700ms",
+        "purpose": "Warehouse banner image scale/brighten."
+      },
+      {
+        "name": "tile-enter",
+        "value": "500ms, staggered 60ms",
+        "purpose": "Tiles fade up once on scroll."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Buy Button",
+      "kind": "button",
+      "refersTo": "button-buy",
+      "description": "Card payment via Stripe: cyan outline, fills cyan on hover.",
+      "html": "<button class=\"ds-btn-buy\">Buy now — $480</button>",
+      "css": ".ds-btn-buy{width:100%;padding:16px;border:2px solid #00e5ff;background:rgba(0,229,255,0.1);color:#fff;font-family:'Archivo Black', Impact, system-ui, sans-serif;font-size:18px;text-transform:uppercase;letter-spacing:0.025em;border-radius:0;cursor:pointer;transition:all 200ms;}.ds-btn-buy:hover{background:#00e5ff;color:#0b0b0d;}.ds-btn-buy:focus-visible{outline:2px solid #00e5ff;outline-offset:2px;}"
+    },
+    {
+      "name": "Inquire Button",
+      "kind": "button",
+      "refersTo": "button-inquire",
+      "description": "Pink-outlined inquiry action; a pink wash slides in on hover.",
+      "html": "<button class=\"ds-btn-inquire\"><span>Inquire / Buy Piece</span></button>",
+      "css": ".ds-btn-inquire{position:relative;overflow:hidden;width:100%;padding:16px 20px;border:2px solid #ff2d95;background:transparent;color:#fff;font-family:'Archivo Black', Impact, system-ui, sans-serif;font-size:18px;text-transform:uppercase;letter-spacing:0.025em;border-radius:0;cursor:pointer;transition:background-color 200ms,color 200ms;}.ds-btn-inquire:hover{background:#ff2d95;color:#0b0b0d;}.ds-btn-inquire:focus-visible{outline:2px solid #00e5ff;outline-offset:2px;}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Hairline mono button for back and close.",
+      "html": "<button class=\"ds-btn-ghost\">← back</button>",
+      "css": ".ds-btn-ghost{padding:6px 12px;border:1px solid rgba(255,255,255,0.25);background:rgba(11,11,13,0.7);color:rgba(255,255,255,0.8);font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border-radius:0;cursor:pointer;transition:color 200ms,border-color 200ms;}.ds-btn-ghost:hover{border-color:#00e5ff;color:#00e5ff;}.ds-btn-ghost:focus-visible{outline:2px solid #00e5ff;outline-offset:2px;}"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Square mono field; cyan border and neon edge on focus.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Email</span><input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\"></label>",
+      "css": ".ds-field{display:block;}.ds-field-label{display:block;margin-bottom:6px;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;letter-spacing:0.2em;color:#737373;}.ds-input{width:100%;padding:10px 12px;border:1px solid rgba(255,255,255,0.15);background:#0b0b0d;color:#f5f5f5;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:14px;border-radius:0;outline:none;}.ds-input::placeholder{color:#525252;}.ds-input:focus{border-color:#00e5ff;box-shadow:0 0 0 1px rgba(0,229,255,0.6),0 0 24px rgba(0,229,255,0.25);}"
+    },
+    {
+      "name": "Artwork Tile",
+      "kind": "card",
+      "refersTo": "artwork-tile",
+      "description": "Painting in a hairline frame with index tag and hover caption.",
+      "html": "<button class=\"ds-tile\"><div class=\"ds-tile-art\"></div><span class=\"ds-tile-index\">01</span><div class=\"ds-tile-cap\"><div><div class=\"ds-tile-title\">Pink Static</div><div class=\"ds-tile-meta\">2026 · 24 × 30 in</div></div><span class=\"ds-tile-price\">$480</span></div></button>",
+      "css": ".ds-tile{position:relative;display:block;width:240px;padding:0;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#121216;text-align:left;cursor:pointer;transition:transform 300ms,border-color 300ms;}.ds-tile:hover{transform:rotate(-1.2deg) scale(1.015);border-color:rgba(0,229,255,0.7);}.ds-tile:focus-visible{outline:2px solid #00e5ff;}.ds-tile-art{height:300px;background:linear-gradient(180deg,#ff2d95 0%,#7a1748 45%,#141414 55%,#0b0b0d 100%);}.ds-tile-index{position:absolute;left:8px;top:8px;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.4);}.ds-tile-cap{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;padding:40px 12px 12px;background:linear-gradient(to top,#0b0b0d,rgba(11,11,13,0.8),transparent);opacity:0;transition:opacity 300ms;}.ds-tile:hover .ds-tile-cap,.ds-tile:focus-visible .ds-tile-cap{opacity:1;}.ds-tile-title{font-family:'Archivo Black', Impact, system-ui, sans-serif;font-size:18px;line-height:1;color:#fff;}.ds-tile-meta{margin-top:4px;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#a3a3a3;}.ds-tile-price{padding:4px 8px;border:1px solid #00e5ff;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.1em;color:#00e5ff;}"
+    },
+    {
+      "name": "Spec Grid",
+      "kind": "custom",
+      "refersTo": "info-panel",
+      "description": "The viewer's 2-column facts grid: label over value, hairline seams.",
+      "html": "<dl class=\"ds-specs\"><div><dt>Dimensions</dt><dd>24 × 30 in</dd></div><div><dt>Year</dt><dd>2026</dd></div><div class=\"ds-span\"><dt>Medium</dt><dd>Spray Paint, Acrylic, and Mixed Texture</dd></div><div><dt>Price</dt><dd class=\"ds-cyan\">$480</dd></div><div><dt>Status</dt><dd class=\"ds-pink\">Original Available</dd></div></dl>",
+      "css": ".ds-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.1);}.ds-specs>div{background:#121216;padding:12px;}.ds-specs .ds-span{grid-column:span 2;}.ds-specs dt{font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#737373;}.ds-specs dd{margin:4px 0 0;font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:14px;color:#e5e5e5;}.ds-specs .ds-cyan{color:#00e5ff;}.ds-specs .ds-pink{color:#ff2d95;}"
+    },
+    {
+      "name": "Studio Tag",
+      "kind": "chip",
+      "refersTo": null,
+      "description": "Hairline-boxed wide-tracked mono label.",
+      "html": "<span class=\"ds-tag\">Underground Studio · Est. MMXXV</span>",
+      "css": ".ds-tag{display:inline-block;padding:4px 8px;border:1px solid rgba(255,255,255,0.15);font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;letter-spacing:0.35em;color:#a3a3a3;}"
+    },
+    {
+      "name": "Warehouse Banner",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Bordered photo panel inviting visitors into the 3D walk.",
+      "html": "<a class=\"ds-banner\" href=\"#\"><span class=\"ds-banner-shade\"></span><span class=\"ds-banner-body\"><span class=\"ds-banner-label\">New · Walk the gallery in 3D</span><span class=\"ds-banner-title\">Enter the warehouse <span class=\"ds-arrow\">→</span></span></span></a>",
+      "css": ".ds-banner{position:relative;display:block;height:208px;overflow:hidden;border:1px solid rgba(255,255,255,0.15);background:#3a2420;text-decoration:none;transition:border-color 200ms;}.ds-banner:hover{border-color:#00e5ff;}.ds-banner:focus-visible{outline:2px solid #00e5ff;}.ds-banner-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,13,0.95),rgba(11,11,13,0.3),transparent);}.ds-banner-body{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:28px;box-sizing:border-box;}.ds-banner-label{font-family:'Space Mono', 'JetBrains Mono', ui-monospace, monospace;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;letter-spacing:0.35em;color:#00e5ff;}.ds-banner-title{margin-top:8px;font-family:'Archivo Black', Impact, system-ui, sans-serif;font-size:48px;line-height:1;text-transform:uppercase;color:#fff;}.ds-arrow{display:inline-block;transition:transform 200ms;}.ds-banner:hover .ds-arrow{transform:translateX(8px);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lit Wall",
+    "overview": "A dark warehouse after hours, and one wall lit. The underground mood (matte charcoal, brick, film grain, raw type) is the room; the paintings are the only things in full light. Visitors come for the surface: spray haze, dry pigment worked back to the weave, metallic leaf, drips. Everything in the interface exists to get them closer to it, and steps back the moment a painting is on screen.\n\nThe aim is premium but edgy, full of raw emotion and authenticity. Premium comes from restraint: a quiet near-black room, generous space around each piece, and facts stated straight. The edge comes from the room itself: heavy condensed capitals, monospaced labels, grain, hairline borders, and a single live wire of neon. Authenticity means the work is always shown true. Nothing in the interface tints, filters or distorts a painting where someone is judging it.\n\nThe site has to work for a first-time buyer on a phone and, increasingly, for a curator. Neither should have to look past the interface to see the work.",
+    "keyCharacteristics": [
+      "Matte near-black room (never pure black) with a faint cyan/pink vignette and film grain",
+      "Paintings are the brightest, most colourful thing on any screen",
+      "Archivo Black capitals for names; Space Mono for everything practical",
+      "Square corners and 1px hairline borders throughout",
+      "One live-wire accent (electric cyan); pink and acid are rare signals",
+      "The painting is shown true wherever it is being judged: viewer, zoom, warehouse"
+    ],
+    "rules": [
+      {
+        "name": "The Live Wire Rule",
+        "body": "Electric cyan is the single interactive accent. Pink marks status and inquiry, acid marks success, and neither is used to decorate. The three neons appear together in one place only: the hero's medium tags (▚ Spray-paint, ▚ Acrylic, ▚ Mixed Texture).",
+        "section": "colors"
+      },
+      {
+        "name": "The Brightest Thing Rule",
+        "body": "On any screen that shows a painting, the painting is the brightest and most saturated thing in view. Neon is applied as 1px lines, small type or a brief hover, never as a large field next to art.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stencil and Ledger Rule",
+        "body": "Archivo Black only names things (the artist, a painting, a section, an action). Every fact, note, price or policy is Space Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light Falls on the Art Rule",
+        "body": "Only paintings are lit. UI elements get a glow only to show focus or the zoom lens, never as decoration.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep the painting the brightest, most saturated thing on any screen that shows one.",
+      "**Do** show paintings true in the viewer, texture zoom and warehouse walk. The Daylight and Spotlight presets stay close to true; UV Blacklight is an opt-in novelty, never the default.",
+      "**Do** use electric cyan as the one interactive accent; keep pink for status and inquiry and acid for success.",
+      "**Do** keep corners square and borders 1px (2px for primary actions); the zoom lens and lighting dots are the only circles.",
+      "**Do** give facts straight in Space Mono: size, medium, year, framing, price, status.",
+      "**Do** keep the background near-black (#0b0b0d), never pure #000.",
+      "**Do** respect `prefers-reduced-motion`; motion stays short (200–700ms)."
+    ],
+    "donts": [
+      "**Don't** let neon become a large fill or background next to a painting.",
+      "**Don't** filter, tint or distort a painting outside a grid tile's hover. The RGB-split glitch belongs to grid tiles only.",
+      "**Don't** boost a painting's contrast or saturation on hover. The current tile hover (contrast 125%, saturate 150%) is known drift, to remove in a later pass.",
+      "**Don't** add background music or autoplaying sound.",
+      "**Don't** invent collectors, sales, exhibitions or press.",
+      "**Don't** import three.js or the warehouse walk eagerly; it stays lazy."
+    ]
+  }
+}
