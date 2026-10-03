@@ -141,9 +141,9 @@ client bundle.
 - Every painting is shown on the same warehouse wall at true scale:
   `scripts/mockup/mockup.py` pastes the (untouched) painting onto
   `scripts/mockup/warehouse-wall.jpg` and writes `<id>.jpg` + `<id>-web.jpg`.
-  Mark a sold piece `status: 'Sold'` (see `isSold` in `paintings.js`): it
-  stays on the wall with no price and no checkout.
   Use it for every new piece so the wall stays consistent.
+- Mark a sold piece `status: 'Sold'` (see `isSold` in `paintings.js`): it
+  stays on the wall with no price and no checkout.
 - Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal,
   `<id>.jpg` for the zoom lens (`hiRes`), and `<id>-canvas.jpg` (the painting
   alone, straightened and cropped to its edges) for the warehouse walk.
