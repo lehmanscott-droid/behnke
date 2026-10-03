@@ -23,8 +23,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', '..', 'public', 'artwork')
 
 S = 2  # work at 4096 px so the zoom lens has detail
-PPI = 28 * S  # wall pixels per inch
-CX, CY = 1024 * S, 760 * S  # centre of the spotlight
+PPI = 22 * S  # wall pixels per inch: a 60 in piece still clears the floor
+CX, CY = 1024 * S, 810 * S  # where every painting is centred
 
 
 def mockup(pid, src, w_in, h_in):

@@ -2,6 +2,7 @@ import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'rea
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
+import { isSold } from '../data/paintings.js'
 import {
   concreteTexture,
   glowTexture,
@@ -458,7 +459,9 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
           <div className="min-w-0 flex-1 text-center">
             <p className="truncate font-display text-base uppercase leading-tight text-white sm:text-lg">{stopName}</p>
             <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-400">
-              {stop > 0 && stop < last ? 'Tap the painting to buy' : `${items.length} works`}
+              {stop > 0 && stop < last
+                ? isSold(items[stop - 1]?.p) ? 'Sold · Private collection' : 'Tap the painting to buy'
+                : `${items.length} works`}
             </p>
           </div>
           <button

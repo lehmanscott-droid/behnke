@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import TextureZoom from './TextureZoom.jsx'
+import { isSold } from '../data/paintings.js'
 import StudioLightSwitch, { LIGHT_MODES } from './StudioLightSwitch.jsx'
 
 // ---------------------------------------------------------------------------
@@ -111,8 +112,8 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
                   <Spec label="Dimensions" value={painting.dimensions} span={!painting.year} />
                   {painting.year && <Spec label="Year" value={String(painting.year)} />}
                   <Spec label="Medium" value={painting.medium} span />
-                  <Spec label="Price" value={painting.price} accent="electric" />
-                  <Spec label="Status" value={painting.status} accent="pink" />
+                  {!isSold(painting) && <Spec label="Price" value={painting.price} accent="electric" />}
+                  <Spec label="Status" value={painting.status} accent="pink" span={isSold(painting)} />
                   {painting.framing && (
                     <Spec label="Framing" value={painting.framing} span />
                   )}
@@ -136,13 +137,19 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
 
               {/* Sticky CTA */}
               <div className="sticky bottom-0 z-10 border-t border-white/10 bg-ink-800 p-5">
-                <button
-                  onClick={() => onBuy(painting)}
-                  className="group relative w-full overflow-hidden border-2 border-hotpink px-5 py-4 font-display text-lg uppercase tracking-wide text-white transition-colors hover:bg-hotpink hover:text-ink-900"
-                >
-                  <span className="relative z-10">Inquire / Buy Piece</span>
-                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-hotpink/20 transition-transform duration-500 group-hover:translate-x-0" />
-                </button>
+                {isSold(painting) ? (
+                  <p className="border-2 border-white/15 px-5 py-4 text-center font-display text-lg uppercase tracking-wide text-neutral-400">
+                    Sold · Private collection
+                  </p>
+                ) : (
+                  <button
+                    onClick={() => onBuy(painting)}
+                    className="group relative w-full overflow-hidden border-2 border-hotpink px-5 py-4 font-display text-lg uppercase tracking-wide text-white transition-colors hover:bg-hotpink hover:text-ink-900"
+                  >
+                    <span className="relative z-10">Inquire / Buy Piece</span>
+                    <span className="pointer-events-none absolute inset-0 -translate-x-full bg-hotpink/20 transition-transform duration-500 group-hover:translate-x-0" />
+                  </button>
+                )}
               </div>
             </motion.aside>
           </div>

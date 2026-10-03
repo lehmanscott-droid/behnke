@@ -281,6 +281,25 @@ export const paintings = [
     notes:
       'A stencilled parent and two children walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
   },
+  {
+    id: 'pleasure-palace',
+    title: 'Pleasure Palace',
+    year: null, // TODO: year from Scott
+    dimensions: '48 × 60 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: null,
+    price: null,
+    status: 'Sold',
+    stripeLink: '',
+    image: asset('artwork/pleasure-palace-web.jpg'),
+    hiRes: asset('artwork/pleasure-palace.jpg'),
+    canvas: asset('artwork/pleasure-palace-canvas.jpg'),
+    notes:
+      'Hot pink roses and lace stencils scattered over a dark green ground, spattered with neon green and layered with violet netting. Made for a private collector.',
+  },
 ]
+
+// A sold piece stays on the wall as portfolio work: no price, no checkout.
+export const isSold = (p) => /sold/i.test(p?.status || '')
 
 export default paintings
