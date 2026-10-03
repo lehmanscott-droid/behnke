@@ -361,6 +361,22 @@ export const paintings = [
     notes:
       'A red muscle car floating in a burst of red, orange and yellow impasto, the paint dragged outward like heat off the tarmac.',
   },
+  {
+    id: 'riptide',
+    title: 'Riptide',
+    year: 2025,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/8x25kE93CdKacrv7qI53O0o', // live — one sale, then deactivates
+    image: asset('artwork/riptide-web.jpg'),
+    hiRes: asset('artwork/riptide.jpg'),
+    canvas: asset('artwork/riptide-canvas.jpg'),
+    notes:
+      'Thick white paste combed into looping, overlapping currents, then misted with navy, sky blue and silver spray so the ridges catch the color like light on water.',
+  },
 ]
 
 // A sold piece stays on the wall as portfolio work: no price, no checkout.
