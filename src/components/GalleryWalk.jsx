@@ -1,21 +1,24 @@
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, useScroll, useTexture } from '@react-three/drei'
+import { useTexture } from '@react-three/drei'
 import {
-  brickTexture,
+  brickTextures,
   concreteTexture,
   glowTexture,
   graffitiTexture,
   labelTexture,
+  withRepeat,
 } from '../gallery/textures.js'
 
 // ---------------------------------------------------------------------------
 // GalleryWalk — a first-person walk down a graffiti warehouse corridor
 // ---------------------------------------------------------------------------
 // Full-screen overlay, lazy-loaded from App.jsx so three.js only downloads when
-// someone taps "Enter the warehouse". Scroll (desktop) or swipe (phone) moves
-// the camera along a fixed path that stops in front of each painting.
+// someone taps "Enter the warehouse". Movement is one stop at a time — the
+// entrance, each painting, the end wall — via the big Back / Next buttons, a
+// single quick swipe, one mouse-wheel notch, or the arrow keys. The camera
+// glides between stops along a fixed path.
 // Paintings alternate left/right walls at their true size (the long side of a
 // 24 × 30 in canvas = 0.762 m), each with a gallery wall label. Tapping a
 // painting calls onOpen(painting), which opens the normal ArtworkModal on top,
@@ -32,6 +35,7 @@ const FOV = 60 // vertical field of view, degrees
 const LABEL_W = 0.3
 const LABEL_H = 0.15
 const LABEL_GAP = 0.06
+const BUMP = 2.2 // depth of the mortar joints / brick relief
 
 const TAGS = ['SLA', '1 OF 1', 'RAW', 'CHI', 'STATIC', 'NO RESTOCK', 'ORIGINAL', 'WET PAINT']
 
@@ -88,9 +92,14 @@ function layout(paintings, viewAspect, aspects) {
 
 const smooth = (t) => t * t * (3 - 2 * t)
 
-// ── Camera follows the scroll along the keyframes ─────────────────────────
-function CameraRig({ keys, progressRef }) {
-  const scroll = useScroll()
+// ── Camera glides to the current stop ─────────────────────────────────────
+// `targetRef.current` is the stop index to head for. The rig moves at a steady
+// pace (about 1.1 s per stop) and eases in/out within each segment, so a
+// single tap of Next is one smooth walk to the next painting.
+const STOPS_PER_SECOND = 0.9
+
+function CameraRig({ keys, targetRef, progressRef }) {
+  const t = useRef(targetRef.current)
   const look = useRef(new THREE.Vector3(...keys[0].look))
   const tPos = useMemo(() => new THREE.Vector3(), [])
   const tLook = useMemo(() => new THREE.Vector3(), [])
@@ -98,19 +107,20 @@ function CameraRig({ keys, progressRef }) {
   const b = useMemo(() => new THREE.Vector3(), [])
 
   useFrame((state, dt) => {
-    const t = scroll.offset * (keys.length - 1)
-    const i = Math.min(Math.floor(t), keys.length - 2)
-    const f = smooth(Math.min(1, t - i))
+    const diff = targetRef.current - t.current
+    t.current += Math.sign(diff) * Math.min(Math.abs(diff), Math.min(dt, 0.05) * STOPS_PER_SECOND)
+    const last = keys.length - 1
+    const i = Math.min(Math.floor(t.current), last - 1)
+    const f = smooth(Math.min(1, Math.max(0, t.current - i)))
     tPos.lerpVectors(a.fromArray(keys[i].pos), b.fromArray(keys[i + 1].pos), f)
     tLook.lerpVectors(a.fromArray(keys[i].look), b.fromArray(keys[i + 1].look), f)
     // gentle hand-held sway
-    const time = state.clock.elapsedTime
-    tPos.y += Math.sin(time * 1.3) * 0.012
-    const k = 1 - Math.exp(-dt * 5)
+    tPos.y += Math.sin(state.clock.elapsedTime * 1.3) * 0.01
+    const k = 1 - Math.exp(-dt * 8)
     state.camera.position.lerp(tPos, k)
     look.current.lerp(tLook, k)
     state.camera.lookAt(look.current)
-    if (progressRef.current) progressRef.current.style.width = `${scroll.offset * 100}%`
+    if (progressRef.current) progressRef.current.style.width = `${(t.current / last) * 100}%`
   })
   return null
 }
@@ -198,8 +208,20 @@ function Warehouse({ items, endZ, onOpen, onAspect }) {
   const midZ = (endZ + 6) / 2
   const tex = useMemo(
     () => ({
-      brick: brickTexture([length / 1.6, WALL_H / 1.6]),
-      brickEnd: brickTexture([(HALF_W * 2) / 1.6, WALL_H / 1.6]),
+      ...(() => {
+        // one generated brick tile, repeated at real-world scale (1.6 m/tile)
+        const b = brickTextures()
+        const side = [length / 1.6, WALL_H / 1.6]
+        const end = [(HALF_W * 2) / 1.6, WALL_H / 1.6]
+        return {
+          brickBase: b.map,
+          bumpBase: b.bump,
+          brick: withRepeat(b.map, ...side),
+          brickBump: withRepeat(b.bump, ...side),
+          brickEnd: withRepeat(b.map, ...end),
+          brickEndBump: withRepeat(b.bump, ...end),
+        }
+      })(),
       floor: concreteTexture([HALF_W / 2, length / 4], { tone: 62 }),
       ceiling: concreteTexture([2, length / 4], { tone: 30 }),
       glow: glowTexture(),
@@ -232,19 +254,19 @@ function Warehouse({ items, endZ, onOpen, onAspect }) {
       {/* walls */}
       <mesh position={[-HALF_W, WALL_H / 2, midZ]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[length, WALL_H]} />
-        <meshStandardMaterial map={tex.brick} roughness={0.95} />
+        <meshStandardMaterial map={tex.brick} bumpMap={tex.brickBump} bumpScale={BUMP} roughness={0.92} />
       </mesh>
       <mesh position={[HALF_W, WALL_H / 2, midZ]} rotation={[0, -Math.PI / 2, 0]}>
         <planeGeometry args={[length, WALL_H]} />
-        <meshStandardMaterial map={tex.brick} roughness={0.95} />
+        <meshStandardMaterial map={tex.brick} bumpMap={tex.brickBump} bumpScale={BUMP} roughness={0.92} />
       </mesh>
       <mesh position={[0, WALL_H / 2, endZ]}>
         <planeGeometry args={[HALF_W * 2, WALL_H]} />
-        <meshStandardMaterial map={tex.brickEnd} roughness={0.95} />
+        <meshStandardMaterial map={tex.brickEnd} bumpMap={tex.brickEndBump} bumpScale={BUMP} roughness={0.92} />
       </mesh>
       <mesh position={[0, WALL_H / 2, 6]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[HALF_W * 2, WALL_H]} />
-        <meshStandardMaterial map={tex.brickEnd} roughness={0.95} />
+        <meshStandardMaterial map={tex.brickEnd} bumpMap={tex.brickEndBump} bumpScale={BUMP} roughness={0.92} />
       </mesh>
       {/* floor + ceiling */}
       <mesh position={[0, 0, midZ]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -318,6 +340,47 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
   )
   const progressRef = useRef(null)
   const [fontsReady, setFontsReady] = useState(false)
+
+  // ── Movement: one stop at a time ────────────────────────────────────────
+  const last = keys.length - 1
+  const [stop, setStop] = useState(0)
+  const targetRef = useRef(0)
+  targetRef.current = Math.min(stop, last)
+  const go = useCallback((d) => setStop((s) => Math.max(0, Math.min(last, s + d))), [last])
+  const stopName =
+    stop === 0 ? 'Entrance' : stop === last ? 'End of the hall' : items[stop - 1]?.p.title
+  const atEnd = stop >= last
+
+  // A swipe in any direction (40 px or more, any speed) = one stop
+  // (left/up = forward). Smaller movements are taps, which open a painting.
+  const swipe = useRef(null)
+  const onPointerDown = (e) => {
+    swipe.current = { x: e.clientX, y: e.clientY }
+  }
+  const onPointerUp = (e) => {
+    const s = swipe.current
+    swipe.current = null
+    if (!s || paused) return
+    const dx = e.clientX - s.x
+    const dy = e.clientY - s.y
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 40) return // a tap, not a swipe
+    const forward = Math.abs(dx) > Math.abs(dy) ? dx < 0 : dy < 0
+    go(forward ? 1 : -1)
+  }
+  // One wheel "notch" (or trackpad flick) = one stop, with a short cooldown.
+  const wheel = useRef({ acc: 0, lockUntil: 0 })
+  const onWheel = (e) => {
+    if (paused) return
+    const w = wheel.current
+    const now = performance.now()
+    if (now < w.lockUntil) return
+    w.acc += e.deltaY + e.deltaX
+    if (Math.abs(w.acc) > 40) {
+      go(w.acc > 0 ? 1 : -1)
+      w.acc = 0
+      w.lockUntil = now + 700
+    }
+  }
   const webgl = useMemo(hasWebGL, [])
 
   // Labels and tags are drawn with the site fonts, so wait for them.
@@ -339,17 +402,35 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
   useEffect(() => {
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const onKey = (e) => e.key === 'Escape' && !paused && onExit()
+    const onKey = (e) => {
+      if (paused) return
+      if (e.key === 'Escape') onExit()
+      else if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(e.key)) {
+        e.preventDefault()
+        go(1)
+      } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) {
+        e.preventDefault()
+        go(-1)
+      }
+    }
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = prev
       document.body.style.cursor = ''
       window.removeEventListener('keydown', onKey)
     }
-  }, [onExit, paused])
+  }, [onExit, paused, go])
 
   return (
-    <div className="fixed inset-0 z-[60] bg-ink-900" role="dialog" aria-modal="true" aria-label="Walk the warehouse gallery">
+    <div
+      className="fixed inset-0 z-[60] touch-none select-none bg-ink-900"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Walk the warehouse gallery"
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onWheel={onWheel}
+    >
       {webgl && fontsReady && (
         <Canvas
           dpr={[1, 1.5]}
@@ -359,10 +440,8 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
           <color attach="background" args={['#0b0b0d']} />
           <fog attach="fog" args={['#0b0b0d', 7, 24]} />
           <Suspense fallback={null}>
-            <ScrollControls pages={keys.length} damping={0.2}>
-              <CameraRig keys={keys} progressRef={progressRef} />
-              <Warehouse items={items} endZ={endZ} onOpen={onOpen} onAspect={onAspect} />
-            </ScrollControls>
+            <CameraRig keys={keys} targetRef={targetRef} progressRef={progressRef} />
+            <Warehouse items={items} endZ={endZ} onOpen={onOpen} onAspect={onAspect} />
           </Suspense>
         </Canvas>
       )}
@@ -386,11 +465,34 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
           Exit ✕
         </button>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 sm:p-6">
-        <p className="mb-3 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-          Scroll or swipe to walk · Tap a painting to buy
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/90 to-transparent p-4 pt-10 sm:p-6 sm:pt-12">
+        <div className="mx-auto flex max-w-xl items-center gap-3">
+          <button
+            onClick={() => go(-1)}
+            disabled={stop === 0}
+            aria-label="Back"
+            className="h-14 w-20 shrink-0 border border-white/25 bg-ink-900/70 font-mono text-xs uppercase tracking-widest text-white backdrop-blur transition-colors enabled:hover:border-electric enabled:hover:text-electric disabled:opacity-30 sm:w-28"
+          >
+            ‹ Back
+          </button>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="truncate font-display text-base uppercase leading-tight text-white sm:text-lg">{stopName}</p>
+            <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-400">
+              {stop > 0 && stop < last ? 'Tap the painting to buy' : `${items.length} works`}
+            </p>
+          </div>
+          <button
+            onClick={() => (atEnd ? onExit() : go(1))}
+            aria-label={atEnd ? 'Exit the warehouse' : 'Next'}
+            className="h-14 w-20 shrink-0 border-2 border-electric bg-electric/10 font-mono text-xs uppercase tracking-widest text-white backdrop-blur transition-colors hover:bg-electric hover:text-ink-900 sm:w-28"
+          >
+            {atEnd ? 'Exit' : 'Next ›'}
+          </button>
+        </div>
+        <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-500">
+          Swipe, scroll or use the arrows
         </p>
-        <div className="h-px w-full bg-white/10">
+        <div className="mt-2 h-px w-full bg-white/10">
           <div ref={progressRef} className="h-px bg-electric" style={{ width: '0%' }} />
         </div>
       </div>

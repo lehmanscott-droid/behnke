@@ -25,8 +25,9 @@ _Dim Gallery Spotlight_, _Daylight Studio_, and _UV Blacklight Look_ (driven by
 CSS filters + drop-shadows).
 
 **Warehouse Walk** (`components/GalleryWalk.jsx`) — "Enter the warehouse" opens a
-3D graffiti warehouse corridor (React Three Fiber). Scroll or swipe to walk past
-each painting at true size, with a gallery wall label (title, medium, size,
+3D graffiti warehouse corridor (React Three Fiber). Move one stop at a time with
+the Back / Next buttons, a single swipe, one mouse-wheel notch or the arrow keys,
+past each painting at true size, with a gallery wall label (title, medium, size,
 price or a red "sold" dot); tap a painting to open its popup and buy.
 Lazy-loaded, so three.js only downloads when someone enters.
 
