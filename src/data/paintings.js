@@ -298,8 +298,8 @@ export const paintings = [
       'A stencilled parent and two children walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
   },
   {
-    id: 'lucky-night',
-    title: 'Lucky Night',
+    id: 'lucky',
+    title: 'Lucky',
     year: 2024,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
@@ -307,9 +307,9 @@ export const paintings = [
     price: '$480',
     status: 'Original Available',
     stripeLink: 'https://buy.stripe.com/3cIaEY2Fe7lM6374ew53O0k', // live — one sale, then deactivates
-    image: asset('artwork/lucky-night-web.jpg'),
-    hiRes: asset('artwork/lucky-night.jpg'),
-    canvas: asset('artwork/lucky-night-canvas.jpg'),
+    image: asset('artwork/lucky-web.jpg'),
+    hiRes: asset('artwork/lucky.jpg'),
+    canvas: asset('artwork/lucky-canvas.jpg'),
     notes:
       'A stencilled street corner under a hot blue sky: a neon CLUB LUCKY sign and an old Italian kitchen wall, rendered in glittering pink, rust and electric blue.',
   },
