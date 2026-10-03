@@ -297,6 +297,70 @@ export const paintings = [
     notes:
       'A stencilled parent and two children walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
   },
+  {
+    id: 'lucky-night',
+    title: 'Lucky Night',
+    year: 2024,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/3cIaEY2Fe7lM6374ew53O0k', // live — one sale, then deactivates
+    image: asset('artwork/lucky-night-web.jpg'),
+    hiRes: asset('artwork/lucky-night.jpg'),
+    canvas: asset('artwork/lucky-night-canvas.jpg'),
+    notes:
+      'A stencilled street corner under a hot blue sky: a neon CLUB LUCKY sign and an old Italian kitchen wall, rendered in glittering pink, rust and electric blue.',
+  },
+  {
+    id: 'wildfire',
+    title: 'Wildfire',
+    year: 2025,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/14A00kgw40Xo3UZ3as53O0l', // live — one sale, then deactivates
+    image: asset('artwork/wildfire-web.jpg'),
+    hiRes: asset('artwork/wildfire.jpg'),
+    canvas: asset('artwork/wildfire-canvas.jpg'),
+    notes:
+      'Blazing orange and red swept across a white ground, crossed with pale brush marks, threaded with yellow drips and pinned down by a heavy black zigzag.',
+  },
+  {
+    id: 'cold-front',
+    title: 'Cold Front',
+    year: 2025,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/eVqeVe6Vu8pQ2QVeTa53O0m', // live — one sale, then deactivates
+    image: asset('artwork/cold-front-web.jpg'),
+    hiRes: asset('artwork/cold-front.jpg'),
+    canvas: asset('artwork/cold-front-canvas.jpg'),
+    notes:
+      'Slate grey worked thick with a palette knife, broken open by hot pink and acid yellow, with stencilled flowers, black brush lines and a scrawled black tag.',
+  },
+  {
+    id: 'burnout',
+    title: 'Burnout',
+    year: 2023,
+    dimensions: '20 × 16 in',
+    medium: 'Acrylic and Mixed Texture',
+    framing: 'Unframed',
+    price: '$200',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/8x27sM1Ba49A0IN12k53O0n', // live — one sale, then deactivates
+    image: asset('artwork/burnout-web.jpg'),
+    hiRes: asset('artwork/burnout.jpg'),
+    canvas: asset('artwork/burnout-canvas.jpg'),
+    notes:
+      'A red muscle car floating in a burst of red, orange and yellow impasto, the paint dragged outward like heat off the tarmac.',
+  },
 ]
 
 // A sold piece stays on the wall as portfolio work: no price, no checkout.
