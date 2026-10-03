@@ -35,9 +35,9 @@ agreeing on this base. Always reference files in `public/` through
 
 `src/App.jsx` is the composition root. It owns only two pieces of view state:
 which painting the modal shows (`active`) and which painting the checkout is
-securing (`checkout`). The `AudioPlayer` is a **sibling** of the modal and cart
-and is never conditionally rendered, so opening either never re-mounts it — the
-music keeps playing uninterrupted. Preserve this invariant when refactoring.
+securing (`checkout`). The site has no background music: the old vinyl
+AudioPlayer was removed on purpose (licensing, and it covered content on
+phones). Don't add it back without asking.
 
 ### Layout
 
@@ -49,7 +49,6 @@ src/
   index.css                  # Tailwind entry + global styles
   data/
     paintings.js             # artwork data (images, prices, stripeLink, notes)
-    channels.js              # audio channel config
   components/
     StudioWall.jsx           # CSS-columns masonry grid
     ArtworkCard.jsx          # glitchy RGB-split hover tile
@@ -57,8 +56,7 @@ src/
     TextureZoom.jsx          # magnifying lens (desktop) / pinch-zoom (touch)
     StudioLightSwitch.jsx    # lighting environment presets
     CheckoutCart.jsx         # slide-out checkout panel
-    AudioPlayer.jsx          # persistent vinyl player (mounted once at root)
-    Waveform.jsx             # CSS audio visualizer
+    Policies.jsx             # shipping, returns & commissions section
     GrainOverlay.jsx         # film-grain overlay
 public/
   artwork/                   # image assets (full-res + -web variants)
@@ -70,8 +68,9 @@ public/
 | What | File |
 | --- | --- |
 | Paintings (images, hi-res, titles, prices, notes) | `src/data/paintings.js` |
-| Audio tracks / streams | `src/data/channels.js` |
 | Payments & inquiries config | `src/config.js` + `stripeLink` per piece in `paintings.js` |
+| Shipping & returns copy | `src/components/Policies.jsx` (keep in step with the $50 Stripe shipping rate) |
+| Public contact email | `CONTACT_EMAIL` in `src/config.js` |
 | Lighting presets | `src/components/StudioLightSwitch.jsx` |
 
 ## Payments & inquiries — zero backend

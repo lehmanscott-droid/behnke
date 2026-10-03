@@ -24,12 +24,6 @@ the right, plus a **Studio Light Switch** that re-lights the piece:
 _Dim Gallery Spotlight_, _Daylight Studio_, and _UV Blacklight Look_ (driven by
 CSS filters + drop-shadows).
 
-**Ambient Audio Engine** (`components/AudioPlayer.jsx`) — a floating vinyl
-player, bottom-left. Play/pause, a "Studio Vibe" dropdown (Lo-Fi Beats,
-Alternative/Radiohead, Industrial Electronic), a spinning record and a glitchy
-CSS waveform visualizer. Mounted once at the app root so it **never re-mounts or
-interrupts** when you open modals or the cart.
-
 **Macro Texture Zoom** (`components/TextureZoom.jsx`) — inside the modal. On
 desktop the cursor becomes a magnifying lens that tracks the mouse over the
 hi-res image; on touch devices it's **pinch-to-zoom + double-tap** (Framer
@@ -44,7 +38,6 @@ piece thumbnail, price, status, and a Name / Shipping Address / Email form.
 | What | File | Notes |
 | --- | --- | --- |
 | Paintings (images, hi-res, titles, prices, notes) | `src/data/paintings.js` | Placeholders use `picsum.photos`. Set `hiRes` to your largest file for a crisp zoom lens. |
-| Audio tracks / streams | `src/data/channels.js` | Point `src` at `/public/audio/*.mp3` or a streaming URL. |
 | Payments & inquiries | `src/config.js` + `stripeLink` in `src/data/paintings.js` | **Both live, no backend.** Paste a Formspree form ID in `config.js` to enable inquiries; paste a Stripe **Payment Link** per piece to enable "Buy Now". Both values are public and safe to commit. |
 | Lighting presets | `src/components/StudioLightSwitch.jsx` | Tweak `stage`, `artFilter`, `artShadow`. |
 
@@ -55,7 +48,6 @@ src/
   App.jsx                    # composition root; owns modal + cart state
   data/
     paintings.js             # placeholder artwork data
-    channels.js              # audio channel config
   components/
     StudioWall.jsx           # masonry grid
     ArtworkCard.jsx          # glitchy hover tile
@@ -63,7 +55,5 @@ src/
     TextureZoom.jsx          # magnifying lens / pinch-zoom
     StudioLightSwitch.jsx    # lighting environment presets
     CheckoutCart.jsx         # slide-out checkout
-    AudioPlayer.jsx          # persistent vinyl player
-    Waveform.jsx             # CSS audio visualizer
     GrainOverlay.jsx         # film-grain overlay
 ```

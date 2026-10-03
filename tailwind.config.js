@@ -26,10 +26,6 @@ export default {
         pink: '0 0 0 1px rgba(255,45,149,0.6), 0 0 24px rgba(255,45,149,0.25)',
       },
       keyframes: {
-        spin_slow: {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' },
-        },
         glitch: {
           '0%,100%': { transform: 'translate(0)' },
           '20%': { transform: 'translate(-2px, 1px)' },
@@ -37,13 +33,8 @@ export default {
           '60%': { transform: 'translate(-1px, -1px)' },
           '80%': { transform: 'translate(1px, 1px)' },
         },
-        eq: {
-          '0%,100%': { transform: 'scaleY(0.25)' },
-          '50%': { transform: 'scaleY(1)' },
-        },
       },
       animation: {
-        'spin-slow': 'spin_slow 4s linear infinite',
         glitch: 'glitch 0.4s steps(2) infinite',
       },
     },
