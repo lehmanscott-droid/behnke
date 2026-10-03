@@ -61,6 +61,7 @@ src/
 public/
   artwork/                   # image assets (full-res + -web variants)
   favicon.svg
+  og-image.jpg               # 1200×630 link-preview image
 ```
 
 ## Where content lives
@@ -71,6 +72,7 @@ public/
 | Payments & inquiries config | `src/config.js` + `stripeLink` per piece in `paintings.js` |
 | Shipping & returns copy | `src/components/Policies.jsx` (keep in step with the $50 Stripe shipping rate) |
 | Public contact email | `CONTACT_EMAIL` in `src/config.js` |
+| Link preview (Open Graph) | `public/og-image.jpg` (1200×630) + `og:`/`twitter:` tags in `index.html` — absolute `https://www.scottlehmanart.com/` URLs |
 | Lighting presets | `src/components/StudioLightSwitch.jsx` |
 
 ## Payments & inquiries — zero backend
