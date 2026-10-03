@@ -24,7 +24,7 @@ const sections = [
       <>Every painting is an original, one of one. It ships from Chicago within 5 business days of your purchase.</>,
       <>We ship within the United States for a flat $50, which covers packing and insurance for the full purchase price. Outside the US? Send an inquiry from any painting and we'll quote shipping to you.</>,
       <>Each painting is wrapped, protected at the corners and boxed for the trip.</>,
-      <>Paintings ship unframed and wired, ready to hang. Any frames shown in the photos are for display only.</>,
+      <>Paintings ship unframed and wired, ready to hang, unless the listing says a frame is included.</>,
       <>Each painting comes with a signed certificate of authenticity.</>,
       <>We'll email you tracking once it ships. Please double-check your shipping address at checkout. Need to change it? Email {email} before it ships.</>,
     ],

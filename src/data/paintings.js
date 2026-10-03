@@ -28,7 +28,7 @@ export const paintings = [
   {
     id: 'pleasure-palace',
     title: 'Pleasure Palace',
-    year: null, // TODO: year from Scott
+    year: 2024,
     dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: null,
@@ -92,13 +92,13 @@ export const paintings = [
   {
     id: 'verdigris',
     title: 'Verdigris',
-    year: null, // TODO: year from Scott
+    year: 2025,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/7sYdRadjS9tUbnrbGY53O06', // live — one sale, then deactivates
     image: asset('artwork/verdigris-web.jpg'),
     hiRes: asset('artwork/verdigris.jpg'),
     canvas: asset('artwork/verdigris-canvas.jpg'),
@@ -108,13 +108,13 @@ export const paintings = [
   {
     id: 'nightshade',
     title: 'Nightshade',
-    year: null, // TODO: year from Scott
+    year: 2025,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/8x2fZi2FecG64Z3dP653O07', // live — one sale, then deactivates
     image: asset('artwork/nightshade-web.jpg'),
     hiRes: asset('artwork/nightshade.jpg'),
     canvas: asset('artwork/nightshade-canvas.jpg'),
@@ -124,13 +124,13 @@ export const paintings = [
   {
     id: 'backporch',
     title: 'Backporch',
-    year: null, // TODO: year from Scott
+    year: 2025,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/7sY8wQfs00XogHLaCU53O08', // live — one sale, then deactivates
     image: asset('artwork/backporch-web.jpg'),
     hiRes: asset('artwork/backporch.jpg'),
     canvas: asset('artwork/backporch-canvas.jpg'),
@@ -140,13 +140,13 @@ export const paintings = [
   {
     id: 'understory',
     title: 'Understory',
-    year: null, // TODO: year from Scott
+    year: 2024,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/eVqeVe7Zy7lM8bf12k53O09', // live — one sale, then deactivates
     image: asset('artwork/understory-web.jpg'),
     hiRes: asset('artwork/understory.jpg'),
     canvas: asset('artwork/understory-canvas.jpg'),
@@ -156,13 +156,13 @@ export const paintings = [
   {
     id: 'rust-signal',
     title: 'Rust Signal',
-    year: null, // TODO: year from Scott
+    year: 2023,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/14AfZi1Ba49AezD12k53O0a', // live — one sale, then deactivates
     image: asset('artwork/rust-signal-web.jpg'),
     hiRes: asset('artwork/rust-signal.jpg'),
     canvas: asset('artwork/rust-signal-canvas.jpg'),
@@ -172,13 +172,13 @@ export const paintings = [
   {
     id: 'groundwater',
     title: 'Groundwater',
-    year: null, // TODO: year from Scott
+    year: 2023,
     dimensions: '30 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/4gM3cwdjS7lM2QVh1i53O0b', // live — one sale, then deactivates
     image: asset('artwork/groundwater-web.jpg'),
     hiRes: asset('artwork/groundwater.jpg'),
     canvas: asset('artwork/groundwater-canvas.jpg'),
@@ -188,13 +188,13 @@ export const paintings = [
   {
     id: 'floor-plan',
     title: 'Floor Plan',
-    year: null, // TODO: year from Scott
+    year: 2024,
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/00w9AUdjS6hI2QV3as53O0c', // live — one sale, then deactivates
     image: asset('artwork/floor-plan-web.jpg'),
     hiRes: asset('artwork/floor-plan.jpg'),
     canvas: asset('artwork/floor-plan-canvas.jpg'),
@@ -204,13 +204,13 @@ export const paintings = [
   {
     id: 'curtain-call',
     title: 'Curtain Call',
-    year: null, // TODO: year from Scott
-    dimensions: '24 × 30 in', // TODO: confirm size with Scott
+    year: 2022,
+    dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$720',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/8x228s93CbC21MR6mE53O0d', // live — one sale, then deactivates
     image: asset('artwork/curtain-call-web.jpg'),
     hiRes: asset('artwork/curtain-call.jpg'),
     canvas: asset('artwork/curtain-call-canvas.jpg'),
@@ -220,13 +220,13 @@ export const paintings = [
   {
     id: 'open-heart',
     title: 'Open Heart',
-    year: null, // TODO: year from Scott
-    dimensions: '30 × 30 in', // TODO: confirm size with Scott
+    year: 2022,
+    dimensions: '24 × 30 in',
     medium: 'Acrylic and Mixed Texture',
     framing: 'Framed (gold frame included)',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/4gM9AUbbKdKafDH26o53O0e', // live — one sale, then deactivates
     image: asset('artwork/open-heart-web.jpg'),
     hiRes: asset('artwork/open-heart.jpg'),
     canvas: asset('artwork/open-heart-canvas.jpg'),
@@ -236,13 +236,13 @@ export const paintings = [
   {
     id: 'gloves-off',
     title: 'Gloves Off',
-    year: null, // TODO: year from Scott
-    dimensions: '24 × 30 in', // TODO: confirm size with Scott
+    year: 2023,
+    dimensions: '24 × 30 in',
     medium: 'Boxing Gloves, Acrylic, and Mixed Texture on Canvas',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/5kQ14o4Nm8pQbnr8uM53O0f', // live — one sale, then deactivates
     image: asset('artwork/gloves-off-web.jpg'),
     hiRes: asset('artwork/gloves-off.jpg'),
     canvas: asset('artwork/gloves-off-canvas.jpg'),
@@ -252,13 +252,13 @@ export const paintings = [
   {
     id: 'fault-lines',
     title: 'Fault Lines',
-    year: null, // TODO: year from Scott
-    dimensions: '24 × 30 in', // TODO: confirm size with Scott
+    year: 2022,
+    dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/5kQcN6bbK8pQbnrdP653O0g', // live — one sale, then deactivates
     image: asset('artwork/fault-lines-web.jpg'),
     hiRes: asset('artwork/fault-lines.jpg'),
     canvas: asset('artwork/fault-lines-canvas.jpg'),
@@ -268,13 +268,13 @@ export const paintings = [
   {
     id: 'purple-and-gold',
     title: 'Purple & Gold',
-    year: null, // TODO: year from Scott
-    dimensions: '36 × 24 in', // TODO: confirm size with Scott
+    year: 2022,
+    dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Framed (black frame included)',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/00w9AU7ZydKa77bdP653O0h', // live — one sale, then deactivates
     image: asset('artwork/purple-and-gold-web.jpg'),
     hiRes: asset('artwork/purple-and-gold.jpg'),
     canvas: asset('artwork/purple-and-gold-canvas.jpg'),
@@ -284,13 +284,13 @@ export const paintings = [
   {
     id: 'walk-home',
     title: 'Walk Home',
-    year: null, // TODO: year from Scott
-    dimensions: '24 × 30 in', // TODO: confirm size with Scott
+    year: 2023,
+    dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$720',
     status: 'Original Available',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/00w14o2FefSi8bf4ew53O0i', // live — one sale, then deactivates
     image: asset('artwork/walk-home-web.jpg'),
     hiRes: asset('artwork/walk-home.jpg'),
     canvas: asset('artwork/walk-home-canvas.jpg'),
