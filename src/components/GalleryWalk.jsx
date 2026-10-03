@@ -3,7 +3,6 @@ import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
 import {
-  brickTextures,
   concreteTexture,
   glowTexture,
   graffitiTexture,
@@ -12,7 +11,7 @@ import {
 } from '../gallery/textures.js'
 
 // ---------------------------------------------------------------------------
-// GalleryWalk — a first-person walk down a graffiti warehouse corridor
+// GalleryWalk — a first-person walk down a concrete warehouse corridor
 // ---------------------------------------------------------------------------
 // Full-screen overlay, lazy-loaded from App.jsx so three.js only downloads when
 // someone taps "Enter the warehouse". Movement is one stop at a time — the
@@ -35,9 +34,12 @@ const FOV = 60 // vertical field of view, degrees
 const LABEL_W = 0.3
 const LABEL_H = 0.15
 const LABEL_GAP = 0.06
-const BUMP = 2.2 // depth of the mortar joints / brick relief
+const BUMP = 1.4 // depth of the form joints / pores in the concrete
+const WALL_TILE = 1.2 // metres of wall per concrete tile (6 board-form courses)
 
-const TAGS = ['SLA', '1 OF 1', 'RAW', 'CHI', 'STATIC', 'NO RESTOCK', 'ORIGINAL', 'WET PAINT']
+// Photographic concrete, generated once and made seamless (see CLAUDE.md).
+const WALL_MAP = import.meta.env.BASE_URL + 'textures/concrete-wall.jpg'
+const WALL_BUMP = import.meta.env.BASE_URL + 'textures/concrete-wall-bump.jpg'
 
 // Painting size in metres from its image aspect (long side = 30 in).
 function sizeOf(aspect = 0.8) {
@@ -141,7 +143,7 @@ function Painting({ p, side, z, labelBelow, glow, onOpen, onAspect }) {
 
   return (
     <group position={[side * (HALF_W - 0.04), HANG_Y, z]} rotation={[0, -side * (Math.PI / 2), 0]}>
-      {/* light pool on the brick */}
+      {/* light pool on the concrete */}
       <mesh position={[0, 0.25, -0.02]}>
         <planeGeometry args={[2.8, 3.2]} />
         <meshBasicMaterial map={glow} transparent blending={THREE.AdditiveBlending} depthWrite={false} opacity={0.32} />
@@ -190,7 +192,7 @@ function Painting({ p, side, z, labelBelow, glow, onOpen, onAspect }) {
   )
 }
 
-// ── A spray-painted tag on a wall ─────────────────────────────────────────
+// ── The spray-painted name on the end wall ────────────────────────────────────
 function Tag({ word, seed, position, rotation, size = [3, 1.5] }) {
   const tex = useMemo(() => graffitiTexture(word, { seed }), [word, seed])
   useEffect(() => () => tex.dispose(), [tex])
@@ -206,67 +208,47 @@ function Tag({ word, seed, position, rotation, size = [3, 1.5] }) {
 function Warehouse({ items, endZ, onOpen, onAspect }) {
   const length = -endZ + 8
   const midZ = (endZ + 6) / 2
-  const tex = useMemo(
-    () => ({
-      ...(() => {
-        // one generated brick tile, repeated at real-world scale (1.6 m/tile)
-        const b = brickTextures()
-        const side = [length / 1.6, WALL_H / 1.6]
-        const end = [(HALF_W * 2) / 1.6, WALL_H / 1.6]
-        return {
-          brickBase: b.map,
-          bumpBase: b.bump,
-          brick: withRepeat(b.map, ...side),
-          brickBump: withRepeat(b.bump, ...side),
-          brickEnd: withRepeat(b.map, ...end),
-          brickEndBump: withRepeat(b.bump, ...end),
-        }
-      })(),
+  const [wallMap, wallBump] = useTexture([WALL_MAP, WALL_BUMP])
+  const tex = useMemo(() => {
+    // one seamless concrete tile, repeated at real-world scale
+    wallMap.colorSpace = THREE.SRGBColorSpace
+    wallBump.colorSpace = THREE.NoColorSpace
+    for (const t of [wallMap, wallBump]) {
+      t.wrapS = t.wrapT = THREE.RepeatWrapping
+      t.anisotropy = 8
+    }
+    const side = [length / WALL_TILE, WALL_H / WALL_TILE]
+    const end = [(HALF_W * 2) / WALL_TILE, WALL_H / WALL_TILE]
+    return {
+      wall: withRepeat(wallMap, ...side),
+      wallBump: withRepeat(wallBump, ...side),
+      wallEnd: withRepeat(wallMap, ...end),
+      wallEndBump: withRepeat(wallBump, ...end),
       floor: concreteTexture([HALF_W / 2, length / 4], { tone: 62 }),
       ceiling: concreteTexture([2, length / 4], { tone: 30 }),
       glow: glowTexture(),
-    }),
-    [length]
-  )
+    }
+  }, [length, wallMap, wallBump])
   useEffect(() => () => Object.values(tex).forEach((t) => t.dispose()), [tex])
-
-  // Graffiti goes on the empty wall opposite each painting, plus a couple near
-  // the door, and the big name on the end wall.
-  const tags = useMemo(() => {
-    const out = [
-      { word: TAGS[0], seed: 3, position: [-HALF_W + 0.03, 2.3, 0.5], rotation: [0, Math.PI / 2, 0] },
-      { word: TAGS[1], seed: 8, position: [HALF_W - 0.03, 1.2, -1.2], rotation: [0, -Math.PI / 2, 0], size: [2.4, 1.2] },
-    ]
-    items.forEach((it, i) => {
-      out.push({
-        word: TAGS[(i + 2) % TAGS.length],
-        seed: 11 + i * 7,
-        position: [-it.side * (HALF_W - 0.03), 2.0 + (i % 2) * 0.6, it.z - 0.4],
-        rotation: [0, it.side * (Math.PI / 2), 0],
-        size: [3.4, 1.7],
-      })
-    })
-    return out
-  }, [items])
 
   return (
     <>
       {/* walls */}
       <mesh position={[-HALF_W, WALL_H / 2, midZ]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[length, WALL_H]} />
-        <meshStandardMaterial map={tex.brick} bumpMap={tex.brickBump} bumpScale={BUMP} roughness={0.92} />
+        <meshStandardMaterial map={tex.wall} bumpMap={tex.wallBump} bumpScale={BUMP} roughness={0.9} />
       </mesh>
       <mesh position={[HALF_W, WALL_H / 2, midZ]} rotation={[0, -Math.PI / 2, 0]}>
         <planeGeometry args={[length, WALL_H]} />
-        <meshStandardMaterial map={tex.brick} bumpMap={tex.brickBump} bumpScale={BUMP} roughness={0.92} />
+        <meshStandardMaterial map={tex.wall} bumpMap={tex.wallBump} bumpScale={BUMP} roughness={0.9} />
       </mesh>
       <mesh position={[0, WALL_H / 2, endZ]}>
         <planeGeometry args={[HALF_W * 2, WALL_H]} />
-        <meshStandardMaterial map={tex.brickEnd} bumpMap={tex.brickEndBump} bumpScale={BUMP} roughness={0.92} />
+        <meshStandardMaterial map={tex.wallEnd} bumpMap={tex.wallEndBump} bumpScale={BUMP} roughness={0.9} />
       </mesh>
       <mesh position={[0, WALL_H / 2, 6]} rotation={[0, Math.PI, 0]}>
         <planeGeometry args={[HALF_W * 2, WALL_H]} />
-        <meshStandardMaterial map={tex.brickEnd} bumpMap={tex.brickEndBump} bumpScale={BUMP} roughness={0.92} />
+        <meshStandardMaterial map={tex.wallEnd} bumpMap={tex.wallEndBump} bumpScale={BUMP} roughness={0.9} />
       </mesh>
       {/* floor + ceiling */}
       <mesh position={[0, 0, midZ]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -285,11 +267,9 @@ function Warehouse({ items, endZ, onOpen, onAspect }) {
         </mesh>
       ))}
 
-      {/* the big name on the end wall */}
+      {/* the big name on the end wall — the only graffiti, so the side
+          walls stay bare and the paintings carry the room */}
       <Tag word="SCOTT LEHMAN" seed={21} position={[0, 2.5, endZ + 0.03]} rotation={[0, 0, 0]} size={[5.6, 2.8]} />
-      {tags.map((t, i) => (
-        <Tag key={i} {...t} />
-      ))}
 
       {items.map((it) => (
         <Painting key={it.p.id} {...it} glow={tex.glow} onOpen={onOpen} onAspect={onAspect} />

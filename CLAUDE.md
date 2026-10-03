@@ -66,12 +66,15 @@ someone taps "Enter the warehouse". Keep it that way — never import it (or
 three) eagerly from the main bundle. It sits at `z-[60]`, below the modal
 (`z-[65]`) and checkout (`z-[70]`), so tapping a painting in the walk opens the
 normal popup and buying works the same. Paintings are laid out automatically
-from `paintings.js`; every texture (brick, concrete, graffiti, wall labels) is
+from `paintings.js`. The walls are board-formed concrete: one seamless photo
+tile (`public/textures/concrete-wall.jpg` + `-bump.jpg`, 1.2 m per tile)
+generated with Higgsfield for this site, then cropped and blended to tile. Everything
+else (floor, ceiling, the SCOTT LEHMAN name on the end wall, wall labels) is
 drawn procedurally in `src/gallery/textures.js`, so no third-party assets.
+The side walls carry no graffiti on purpose — the paintings carry the room.
 Movement is step-based (`stop` index: entrance → each painting → end wall),
 not scroll-based: Back/Next buttons, a ≥40 px swipe, one wheel notch or arrow
-keys each move exactly one stop. The brick is a seamless 1.6 m tile with a
-matching bump map (`brickTextures()`). The site has no background music: the old vinyl
+keys each move exactly one stop. The site has no background music: the old vinyl
 AudioPlayer was removed on purpose (licensing, and it covered content on
 phones). Don't add it back without asking.
 
@@ -95,12 +98,13 @@ src/
     Policies.jsx             # shipping, returns & commissions section
     GalleryWalk.jsx          # 3D warehouse walk (lazy-loaded overlay)
   gallery/
-    textures.js              # procedural brick / concrete / graffiti / labels
+    textures.js              # procedural floor / ceiling / graffiti name / labels
     GrainOverlay.jsx         # film-grain overlay
 public/
   artwork/                   # image assets (full-res, -web, and -canvas crops)
   favicon.svg
   og-image.jpg               # 1200×630 link-preview image
+  textures/                  # seamless concrete wall tile + bump map (warehouse)
   warehouse-teaser.jpg       # banner image for "Enter the warehouse"
 ```
 
