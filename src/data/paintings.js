@@ -202,8 +202,8 @@ export const paintings = [
       'A squared spiral of silver-grey bands on a marbled black ground, broken by white blocks and hit with drips of green, blue and violet.',
   },
   {
-    id: 'curtain-call',
-    title: 'Curtain Call',
+    id: 'along-the-way',
+    title: 'Along the Way',
     year: 2022,
     dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
@@ -211,9 +211,9 @@ export const paintings = [
     price: '$720',
     status: 'Original Available',
     stripeLink: 'https://buy.stripe.com/8x228s93CbC21MR6mE53O0d', // live — one sale, then deactivates
-    image: asset('artwork/curtain-call-web.jpg'),
-    hiRes: asset('artwork/curtain-call.jpg'),
-    canvas: asset('artwork/curtain-call-canvas.jpg'),
+    image: asset('artwork/along-the-way-web.jpg'),
+    hiRes: asset('artwork/along-the-way.jpg'),
+    canvas: asset('artwork/along-the-way-canvas.jpg'),
     notes:
       'Two heavy black curtains, one glossy and one stamped with pattern, part on a plain white floor where two small stencilled girls hold sculpted red balloons.',
   },
@@ -282,20 +282,20 @@ export const paintings = [
       'A stencilled portrait in a purple jersey over a textured violet and teal ground, splashed with gold paint.',
   },
   {
-    id: 'walk-home',
-    title: 'Walk Home',
-    year: 2023,
+    id: 'always-beside-you',
+    title: 'Always Beside You',
+    year: 2022,
     dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$720',
     status: 'Original Available',
     stripeLink: 'https://buy.stripe.com/00w14o2FefSi8bf4ew53O0i', // live — one sale, then deactivates
-    image: asset('artwork/walk-home-web.jpg'),
-    hiRes: asset('artwork/walk-home.jpg'),
-    canvas: asset('artwork/walk-home-canvas.jpg'),
+    image: asset('artwork/always-beside-you-web.jpg'),
+    hiRes: asset('artwork/always-beside-you.jpg'),
+    canvas: asset('artwork/always-beside-you-canvas.jpg'),
     notes:
-      'A stencilled parent and two children walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
+      'Scott and his daughters, Maddie and Emma, in 2022: three stencilled figures walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
   },
   {
     id: 'lucky',
