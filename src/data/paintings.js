@@ -26,6 +26,22 @@ const asset = (path) => import.meta.env.BASE_URL + path
 
 export const paintings = [
   {
+    id: 'pleasure-palace',
+    title: 'Pleasure Palace',
+    year: null, // TODO: year from Scott
+    dimensions: '48 × 60 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: null,
+    price: null,
+    status: 'Sold',
+    stripeLink: '',
+    image: asset('artwork/pleasure-palace-web.jpg'),
+    hiRes: asset('artwork/pleasure-palace.jpg'),
+    canvas: asset('artwork/pleasure-palace-canvas.jpg'),
+    notes:
+      'Hot pink roses and lace stencils scattered over a dark green ground, spattered with neon green and layered with violet netting. Made for a private collector.',
+  },
+  {
     id: 'pink-static',
     title: 'Pink Static',
     year: 2026,
@@ -280,22 +296,6 @@ export const paintings = [
     canvas: asset('artwork/walk-home-canvas.jpg'),
     notes:
       'A stencilled parent and two children walking away hand in hand, swallowed by sweeps of cobalt, pink lace stencils, gold pattern and a mossy green ground.',
-  },
-  {
-    id: 'pleasure-palace',
-    title: 'Pleasure Palace',
-    year: null, // TODO: year from Scott
-    dimensions: '48 × 60 in',
-    medium: 'Spray Paint, Acrylic, and Mixed Texture',
-    framing: null,
-    price: null,
-    status: 'Sold',
-    stripeLink: '',
-    image: asset('artwork/pleasure-palace-web.jpg'),
-    hiRes: asset('artwork/pleasure-palace.jpg'),
-    canvas: asset('artwork/pleasure-palace-canvas.jpg'),
-    notes:
-      'Hot pink roses and lace stencils scattered over a dark green ground, spattered with neon green and layered with violet netting. Made for a private collector.',
   },
 ]
 
