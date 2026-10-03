@@ -30,7 +30,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '', // paste this piece's Stripe Payment Link
+    stripeLink: 'https://buy.stripe.com/fZueVea7G49Advz26o53O03', // live — one sale, then deactivates
     image: asset('artwork/pink-static-web.jpg'),
     hiRes: asset('artwork/pink-static.jpg'),
     notes:
@@ -45,7 +45,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '', // paste this piece's Stripe Payment Link
+    stripeLink: 'https://buy.stripe.com/5kQ3cw7Zy8pQdvzeTa53O04', // live — one sale, then deactivates
     image: asset('artwork/tidewrack-web.jpg'),
     hiRes: asset('artwork/tidewrack.jpg'),
     notes:
@@ -60,7 +60,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$480',
     status: 'Original Available',
-    stripeLink: '', // paste this piece's Stripe Payment Link
+    stripeLink: 'https://buy.stripe.com/eVq6oIenWgWmezD6mE53O05', // live — one sale, then deactivates
     image: asset('artwork/bleeding-standard-web.jpg'),
     hiRes: asset('artwork/bleeding-standard.jpg'),
     notes:
