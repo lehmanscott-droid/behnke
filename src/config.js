@@ -15,7 +15,7 @@
 // 1. Sign up (free) at https://formspree.io and create a new form.
 // 2. It gives you an endpoint like  https://formspree.io/f/mldabcpq
 // 3. Paste ONLY the code after /f/  (e.g. 'mldabcpq') between the quotes:
-export const FORMSPREE_FORM_ID = '' // e.g. 'mldabcpq'
+export const FORMSPREE_FORM_ID = 'xvkgeooo' // Scott Lehman Art → Inquiries
 
 export const formspreeEndpoint = () =>
   FORMSPREE_FORM_ID ? `https://formspree.io/f/${FORMSPREE_FORM_ID}` : ''
