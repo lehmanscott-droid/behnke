@@ -152,7 +152,9 @@ function PinchZoom({ src, alt, wrapRef }) {
   const [zoomed, setZoomed] = useState(false)
 
   // Gesture bookkeeping for a manual two-finger pinch.
-  const gesture = useRef({ startDist: 0, startScale: 1 })
+  // `multi` stays true from the second finger down until every finger is up,
+  // so the pointerups that end a pinch never count as a double-tap.
+  const gesture = useRef({ startDist: 0, startScale: 1, multi: false })
   const lastTap = useRef(0)
 
   const dist = (touches) => {
@@ -164,7 +166,7 @@ function PinchZoom({ src, alt, wrapRef }) {
 
   const onTouchStart = (e) => {
     if (e.touches.length === 2) {
-      gesture.current = { startDist: dist(e.touches), startScale: scale.get() }
+      gesture.current = { startDist: dist(e.touches), startScale: scale.get(), multi: true }
     }
   }
 
@@ -178,9 +180,14 @@ function PinchZoom({ src, alt, wrapRef }) {
     }
   }
 
-  const onTouchEnd = () => {
+  // Only snap back after a two-finger pinch. A plain tap's touchend fires right
+  // after its pointerup, so resetting here unconditionally would cancel the
+  // double-tap zoom before its spring animation has moved the scale off 1.
+  const onTouchEnd = (e) => {
+    const wasPinching = gesture.current.startDist > 0
     gesture.current.startDist = 0
-    if (scale.get() <= 1.02) resetZoom()
+    if (e.touches.length === 0) gesture.current.multi = false
+    if (wasPinching && scale.get() <= 1.02) resetZoom()
   }
 
   const resetZoom = () => {
@@ -192,6 +199,10 @@ function PinchZoom({ src, alt, wrapRef }) {
 
   // Double-tap toggles a 2.6× magnification.
   const onPointerUp = () => {
+    if (gesture.current.multi) {
+      lastTap.current = 0
+      return
+    }
     const now = performance.now()
     if (now - lastTap.current < 300) {
       if (scale.get() > 1.02) {
