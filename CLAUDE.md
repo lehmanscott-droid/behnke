@@ -33,9 +33,18 @@ agreeing on this base. Always reference files in `public/` through
 
 ## Architecture
 
-`src/App.jsx` is the composition root. It owns only two pieces of view state:
-which painting the modal shows (`active`) and which painting the checkout is
-securing (`checkout`). The site has no background music: the old vinyl
+`src/App.jsx` is the composition root. It owns three pieces of view state:
+which painting the modal shows (`active`), which painting the checkout is
+securing (`checkout`), and whether the 3D warehouse walk is open (`walking`).
+
+The **warehouse walk** (`GalleryWalk.jsx`, React Three Fiber + drei) is
+lazy-loaded with `React.lazy`, so three.js (~230 kB gzipped) only downloads when
+someone taps "Enter the warehouse". Keep it that way — never import it (or
+three) eagerly from the main bundle. It sits at `z-[60]`, below the modal
+(`z-[65]`) and checkout (`z-[70]`), so tapping a painting in the walk opens the
+normal popup and buying works the same. Paintings are laid out automatically
+from `paintings.js`; every texture (brick, concrete, graffiti, wall labels) is
+drawn procedurally in `src/gallery/textures.js`, so no third-party assets. The site has no background music: the old vinyl
 AudioPlayer was removed on purpose (licensing, and it covered content on
 phones). Don't add it back without asking.
 
@@ -57,11 +66,15 @@ src/
     StudioLightSwitch.jsx    # lighting environment presets
     CheckoutCart.jsx         # slide-out checkout panel
     Policies.jsx             # shipping, returns & commissions section
+    GalleryWalk.jsx          # 3D warehouse walk (lazy-loaded overlay)
+  gallery/
+    textures.js              # procedural brick / concrete / graffiti / labels
     GrainOverlay.jsx         # film-grain overlay
 public/
-  artwork/                   # image assets (full-res + -web variants)
+  artwork/                   # image assets (full-res, -web, and -canvas crops)
   favicon.svg
   og-image.jpg               # 1200×630 link-preview image
+  warehouse-teaser.jpg       # banner image for "Enter the warehouse"
 ```
 
 ## Where content lives
@@ -74,6 +87,7 @@ public/
 | Public contact email | `CONTACT_EMAIL` in `src/config.js` |
 | Link preview (Open Graph) | `public/og-image.jpg` (1200×630) + `og:`/`twitter:` tags in `index.html` — absolute `https://www.scottlehmanart.com/` URLs |
 | Lighting presets | `src/components/StudioLightSwitch.jsx` |
+| Warehouse walk (layout, path, lights, tags) | `src/components/GalleryWalk.jsx` |
 
 ## Payments & inquiries — zero backend
 
@@ -93,5 +107,6 @@ client bundle.
 - Match the existing code style: functional components, hooks, Tailwind utility
   classes, and the descriptive block comments already present in `App.jsx` and
   `config.js`.
-- Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal and
-  `<id>.jpg` for the zoom lens (`hiRes`).
+- Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal,
+  `<id>.jpg` for the zoom lens (`hiRes`), and `<id>-canvas.jpg` (the painting
+  alone, cropped out of the room photo, no frame) for the warehouse walk.

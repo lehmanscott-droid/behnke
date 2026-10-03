@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import paintings from './data/paintings.js'
 import GrainOverlay from './components/GrainOverlay.jsx'
 import StudioWall from './components/StudioWall.jsx'
@@ -6,15 +6,22 @@ import ArtworkModal from './components/ArtworkModal.jsx'
 import CheckoutCart from './components/CheckoutCart.jsx'
 import Policies from './components/Policies.jsx'
 
+// The 3D warehouse pulls in three.js (~250 kB gzipped), so it's only
+// downloaded when someone taps "Enter the warehouse".
+const GalleryWalk = lazy(() => import('./components/GalleryWalk.jsx'))
+
 // ---------------------------------------------------------------------------
 // App — composition root
 // ---------------------------------------------------------------------------
-// Only two pieces of view state live here: which painting the modal shows, and
-// which painting the checkout is securing.
+// View state: which painting the modal shows, which painting the checkout is
+// securing, and whether the 3D warehouse walk is open. The modal and checkout
+// sit above the walk (higher z-index), so buying from inside it works the same
+// as from the grid.
 
 export default function App() {
   const [active, setActive] = useState(null) // painting shown in modal
   const [checkout, setCheckout] = useState(null) // painting being purchased
+  const [walking, setWalking] = useState(false) // 3D warehouse open
 
   const openModal = (p) => setActive(p)
   const closeModal = () => setActive(null)
@@ -29,6 +36,7 @@ export default function App() {
   const showPolicies = () => {
     setCheckout(null)
     setActive(null)
+    setWalking(false)
     requestAnimationFrame(() =>
       document.getElementById('policies')?.scrollIntoView({ behavior: 'smooth' })
     )
@@ -66,6 +74,27 @@ export default function App() {
           <span className="text-acid">▚ Mixed Texture</span>
           <span className="ml-auto">{paintings.length} works on the wall</span>
         </div>
+
+        {/* Way into the 3D warehouse walk */}
+        <button
+          onClick={() => setWalking(true)}
+          className="group relative mt-8 block h-40 w-full overflow-hidden border border-white/15 text-left outline-none transition-colors hover:border-electric focus-visible:ring-2 focus-visible:ring-electric sm:h-52"
+        >
+          <img
+            src={`${import.meta.env.BASE_URL}warehouse-teaser.jpg`}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105 group-hover:opacity-90"
+          />
+          <span className="absolute inset-0 bg-gradient-to-t from-ink-900/95 via-ink-900/30 to-transparent" />
+          <span className="relative flex h-full flex-col justify-end p-5 sm:p-7">
+            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-electric">
+              New · Walk the gallery in 3D
+            </span>
+            <span className="mt-2 font-display text-3xl uppercase leading-none text-white sm:text-5xl">
+              Enter the warehouse <span className="inline-block transition-transform group-hover:translate-x-2">→</span>
+            </span>
+          </span>
+        </button>
       </header>
 
       {/* ----------------------------------------------------------------- */}
@@ -94,6 +123,22 @@ export default function App() {
       {/* ----------------------------------------------------------------- */}
       {/* Overlays                                                          */}
       {/* ----------------------------------------------------------------- */}
+      {walking && (
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink-900 font-mono text-xs uppercase tracking-[0.35em] text-neutral-400">
+              Opening the warehouse…
+            </div>
+          }
+        >
+          <GalleryWalk
+            paintings={paintings}
+            onOpen={openModal}
+            onExit={() => setWalking(false)}
+            paused={Boolean(active || checkout)}
+          />
+        </Suspense>
+      )}
       <ArtworkModal painting={active} onClose={closeModal} onBuy={openCheckout} />
       <CheckoutCart painting={checkout} onClose={closeCheckout} onShowPolicies={showPolicies} />
     </div>
