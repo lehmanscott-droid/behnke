@@ -301,7 +301,7 @@ export const paintings = [
     id: 'lucky',
     title: 'Lucky',
     year: 2024,
-    dimensions: '24 × 30 in',
+    dimensions: '30 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$480',
@@ -376,6 +376,22 @@ export const paintings = [
     canvas: asset('artwork/riptide-canvas.jpg'),
     notes:
       'Thick white paste combed into looping, overlapping currents, then misted with navy, sky blue and silver spray so the ridges catch the color like light on water.',
+  },
+  {
+    id: 'silver-lining',
+    title: 'Silver Lining',
+    year: 2024,
+    dimensions: '24 × 30 in',
+    medium: 'Boxing Gloves, Acrylic, and Mixed Texture on Canvas',
+    framing: 'Unframed',
+    price: '$480',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/28E6oIgw45dEdvzaCU53O0p', // live — one sale, then deactivates
+    image: asset('artwork/silver-lining-web.jpg'),
+    hiRes: asset('artwork/silver-lining.jpg'),
+    canvas: asset('artwork/silver-lining-canvas.jpg'),
+    notes:
+      'A pair of boxing gloves cast in silver and mounted heel-to-heel into a heart, tied off with a looping white cord over a charcoal ground of scraped black and grey and soft sprayed shadows.',
   },
 ]
 
