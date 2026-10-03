@@ -32,6 +32,17 @@ browser. The version is pinned to `@playwright/mcp@0.0.83` because that is
 the release verified against the cloud Chromium — re-test before bumping.
 Snapshots land in `.playwright-mcp/` (gitignored). No API key needed.
 
+## Plugins
+
+`.claude/settings.json` registers two plugin marketplaces and enables their
+plugins, so Claude Code offers to install them when the repo is trusted:
+
+- **Impeccable** (`pbakaus/impeccable`) — frontend design skill with
+  `/impeccable` commands (`audit`, `critique`, `polish`, …). Use it for UI work.
+- **Claude Mem** (`thedotmack/claude-mem`) — persistent memory across
+  sessions. Its database lives in `~/.claude-mem` on the machine, so it only
+  builds up locally; cloud sessions start with an empty memory each time.
+
 ## Deployment
 
 The site deploys to **Vercel** at the root of its own domain,
