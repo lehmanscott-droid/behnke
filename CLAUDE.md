@@ -93,4 +93,5 @@ client bundle.
 - Match the existing code style: functional components, hooks, Tailwind utility
   classes, and the descriptive block comments already present in `App.jsx` and
   `config.js`.
-- Placeholder artwork uses `picsum.photos`; real images live in `public/artwork/`.
+- Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal and
+  `<id>.jpg` for the zoom lens (`hiRes`).
