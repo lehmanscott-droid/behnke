@@ -94,19 +94,6 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/* Waveform equalizer bars (audio visualizer)                         */
-/* ------------------------------------------------------------------ */
-.eq-bar {
-  width: 3px;
-  transform-origin: bottom;
-  animation: eq 0.9s ease-in-out infinite;
-}
-@keyframes eq {
-  0%, 100% { transform: scaleY(0.2); }
-  50% { transform: scaleY(1); }
-}
-
-/* ------------------------------------------------------------------ */
 /* Custom scrollbars                                                   */
 /* ------------------------------------------------------------------ */
 ::-webkit-scrollbar {

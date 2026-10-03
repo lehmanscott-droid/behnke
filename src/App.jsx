@@ -4,16 +4,13 @@ import GrainOverlay from './components/GrainOverlay.jsx'
 import StudioWall from './components/StudioWall.jsx'
 import ArtworkModal from './components/ArtworkModal.jsx'
 import CheckoutCart from './components/CheckoutCart.jsx'
-import AudioPlayer from './components/AudioPlayer.jsx'
 import Policies from './components/Policies.jsx'
 
 // ---------------------------------------------------------------------------
 // App — composition root
 // ---------------------------------------------------------------------------
 // Only two pieces of view state live here: which painting the modal shows, and
-// which painting the checkout is securing. The AudioPlayer is a *sibling* of
-// both and is never conditionally rendered, so opening the modal or the cart
-// never re-mounts it — the music keeps playing uninterrupted.
+// which painting the checkout is securing.
 
 export default function App() {
   const [active, setActive] = useState(null) // painting shown in modal
@@ -82,8 +79,7 @@ export default function App() {
       <Policies />
 
       {/* Footer */}
-      {/* Extra bottom padding on phones so the floating vinyl player never covers the footer. */}
-      <footer className="border-t border-white/10 px-4 pb-32 pt-10 sm:px-6 sm:pb-10">
+      <footer className="border-t border-white/10 px-4 py-10 sm:px-6">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
           <span>Scott Lehman Art</span>
           <span>
@@ -96,13 +92,10 @@ export default function App() {
       </footer>
 
       {/* ----------------------------------------------------------------- */}
-      {/* Overlays (never wrap the AudioPlayer)                             */}
+      {/* Overlays                                                          */}
       {/* ----------------------------------------------------------------- */}
       <ArtworkModal painting={active} onClose={closeModal} onBuy={openCheckout} />
       <CheckoutCart painting={checkout} onClose={closeCheckout} onShowPolicies={showPolicies} />
-
-      {/* Persistent, independent audio engine */}
-      <AudioPlayer />
     </div>
   )
 }
