@@ -111,6 +111,9 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
                   <Spec label="Medium" value={painting.medium} span />
                   <Spec label="Price" value={painting.price} accent="electric" />
                   <Spec label="Status" value={painting.status} accent="pink" />
+                  {painting.framing && (
+                    <Spec label="Framing" value={painting.framing} span />
+                  )}
                 </dl>
 
                 {/* Artist notes */}

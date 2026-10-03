@@ -5,14 +5,15 @@
 // /public/artwork and are served straight from the site.
 //   - `image`  : lighter version shown in the grid + modal (*-web.jpg)
 //   - `hiRes`  : sharper version fed to the Macro Texture Zoom lens (*.jpg)
+//   - `framing`: shown in the modal (the wall photos are framed mockups, so
+//                say plainly what the buyer actually gets)
 //
-// The TITLES, PRICES, DIMENSIONS and NOTES below are placeholders I chose so
-// the site reads well — edit any of them freely. To add more pieces later,
-// upload the image to /public/artwork and copy one of these blocks.
+// All details below are real. To add a piece, upload its image to
+// /public/artwork and copy one of these blocks.
 // ---------------------------------------------------------------------------
 
-// Prefix files in /public with the app's base path so they resolve both in
-// local dev (served at "/") and on GitHub Pages (served at "/behnke/").
+// Prefix files in /public with the app's base path (see `base` in
+// vite.config.js).
 const asset = (path) => import.meta.env.BASE_URL + path
 
 // `stripeLink`: paste this piece's Stripe Payment Link here (https://buy.stripe.com/…)
@@ -22,11 +23,12 @@ const asset = (path) => import.meta.env.BASE_URL + path
 export const paintings = [
   {
     id: 'pink-static',
-    title: 'Pink Static', // placeholder title — rename freely
-    year: 2024,
-    dimensions: '30 × 40 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
-    price: '$3,400', // placeholder
+    title: 'Pink Static',
+    year: 2026,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/pink-static-web.jpg'),
@@ -36,11 +38,12 @@ export const paintings = [
   },
   {
     id: 'tidewrack',
-    title: 'Tidewrack', // placeholder title — rename freely
-    year: 2024,
-    dimensions: '24 × 30 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
-    price: '$2,800', // placeholder
+    title: 'Tidewrack',
+    year: 2026,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/tidewrack-web.jpg'),
@@ -50,11 +53,12 @@ export const paintings = [
   },
   {
     id: 'bleeding-standard',
-    title: 'Bleeding Standard', // placeholder title — rename freely
-    year: 2023,
-    dimensions: '40 × 30 in', // placeholder — set your real size
-    medium: 'Spray-paint, Acrylic, and Mixed Texture',
-    price: '$4,200', // placeholder
+    title: 'Bleeding Standard',
+    year: 2026,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$480',
     status: 'Original Available',
     stripeLink: '', // paste this piece's Stripe Payment Link
     image: asset('artwork/bleeding-standard-web.jpg'),
