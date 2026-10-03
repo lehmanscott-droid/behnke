@@ -66,12 +66,15 @@ someone taps "Enter the warehouse". Keep it that way — never import it (or
 three) eagerly from the main bundle. It sits at `z-[60]`, below the modal
 (`z-[65]`) and checkout (`z-[70]`), so tapping a painting in the walk opens the
 normal popup and buying works the same. Paintings are laid out automatically
-from `paintings.js`; every texture (brick, concrete, graffiti, wall labels) is
+from `paintings.js`. The walls are board-formed concrete: one seamless photo
+tile (`public/textures/concrete-wall.jpg` + `-bump.jpg`, 1.2 m per tile)
+generated with Higgsfield for this site, then cropped and blended to tile. Everything
+else (floor, ceiling, the SCOTT LEHMAN name on the end wall, wall labels) is
 drawn procedurally in `src/gallery/textures.js`, so no third-party assets.
+The side walls carry no graffiti on purpose — the paintings carry the room.
 Movement is step-based (`stop` index: entrance → each painting → end wall),
 not scroll-based: Back/Next buttons, a ≥40 px swipe, one wheel notch or arrow
-keys each move exactly one stop. The brick is a seamless 1.6 m tile with a
-matching bump map (`brickTextures()`). The site has no background music: the old vinyl
+keys each move exactly one stop. The site has no background music: the old vinyl
 AudioPlayer was removed on purpose (licensing, and it covered content on
 phones). Don't add it back without asking.
 
@@ -95,12 +98,13 @@ src/
     Policies.jsx             # shipping, returns & commissions section
     GalleryWalk.jsx          # 3D warehouse walk (lazy-loaded overlay)
   gallery/
-    textures.js              # procedural brick / concrete / graffiti / labels
+    textures.js              # procedural floor / ceiling / graffiti name / labels
     GrainOverlay.jsx         # film-grain overlay
 public/
   artwork/                   # image assets (full-res, -web, and -canvas crops)
   favicon.svg
   og-image.jpg               # 1200×630 link-preview image
+  textures/                  # seamless concrete wall tile + bump map (warehouse)
   warehouse-teaser.jpg       # banner image for "Enter the warehouse"
 ```
 
@@ -134,6 +138,12 @@ client bundle.
 - Match the existing code style: functional components, hooks, Tailwind utility
   classes, and the descriptive block comments already present in `App.jsx` and
   `config.js`.
+- Every painting is shown on the same warehouse wall at true scale:
+  `scripts/mockup/mockup.py` pastes the (untouched) painting onto
+  `scripts/mockup/warehouse-wall.jpg` and writes `<id>.jpg` + `<id>-web.jpg`.
+  Use it for every new piece so the wall stays consistent.
+- Mark a sold piece `status: 'Sold'` (see `isSold` in `paintings.js`): it
+  stays on the wall with no price and no checkout.
 - Artwork images live in `public/artwork/`: `<id>-web.jpg` for the grid/modal,
   `<id>.jpg` for the zoom lens (`hiRes`), and `<id>-canvas.jpg` (the painting
-  alone, cropped out of the room photo, no frame) for the warehouse walk.
+  alone, straightened and cropped to its edges) for the warehouse walk.

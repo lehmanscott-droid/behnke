@@ -142,7 +142,7 @@ export default function CheckoutCart({ painting, onClose, onShowPolicies }) {
                     {painting.title}
                   </h3>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-neutral-500">
-                    {painting.year} · {painting.dimensions}
+                    {[painting.year, painting.dimensions].filter(Boolean).join(' · ')}
                   </p>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
                     <span className="font-mono text-base text-electric">{painting.price}</span>

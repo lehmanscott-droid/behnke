@@ -3,10 +3,12 @@ import * as THREE from 'three'
 // ---------------------------------------------------------------------------
 // Procedural textures for the warehouse walk
 // ---------------------------------------------------------------------------
-// Everything here is drawn on a <canvas> at runtime — brick, concrete, the
-// graffiti and the wall labels — so the site ships no third-party texture
-// files and no copied graffiti. A tiny seeded RNG keeps the "random" grime and
-// drips identical on every visit.
+// Everything here is drawn on a <canvas> at runtime — the floor and ceiling
+// concrete, the graffiti name and the wall labels — so the site ships no
+// third-party texture files and no copied graffiti. (The concrete walls are
+// the one exception: a photo tile in public/textures, see GalleryWalk.jsx.)
+// A tiny seeded RNG keeps the "random" grime and drips identical on every
+// visit.
 
 export function rng(seed) {
   let s = seed >>> 0 || 1
@@ -38,7 +40,7 @@ function toTexture(c, { repeat } = {}) {
   return t
 }
 
-// Speckle + blotch noise shared by brick and concrete.
+// Speckle + blotch noise for the concrete.
 function grime(ctx, w, h, rand, { dots = 9000, blotches = 40, dark = 0.5 } = {}) {
   for (let i = 0; i < dots; i++) {
     const v = Math.floor(rand() * 60)
@@ -55,166 +57,6 @@ function grime(ctx, w, h, rand, { dots = 9000, blotches = 40, dark = 0.5 } = {})
     ctx.fillStyle = g
     ctx.fillRect(x - r, y - r, r * 2, r * 2)
   }
-}
-
-// ── Brick ──────────────────────────────────────────────────────────────────
-// Old Chicago common brick in running bond. One 1024 px tile = 1.6 m of wall:
-// 8 bricks across (≈ 8 in each incl. mortar) and 24 courses (≈ 2⅔ in), so the
-// tile repeats seamlessly. Returns a colour map plus a matching bump map
-// (mortar recessed, chipped edges, pitted faces) so light catches the relief.
-const BRICK_COLOURS = [
-  [[146, 64, 45], 0.26], // common red
-  [[122, 54, 41], 0.24], // dark red
-  [[101, 47, 39], 0.15], // brown
-  [[84, 42, 44], 0.12], // purple-brown
-  [[156, 92, 62], 0.09], // orange
-  [[62, 35, 31], 0.08], // over-fired / burnt
-  [[170, 124, 92], 0.06], // tan
-]
-
-function pickColour(rand) {
-  let r = rand()
-  for (const [c, w] of BRICK_COLOURS) {
-    if ((r -= w) <= 0) return c
-  }
-  return BRICK_COLOURS[0][0]
-}
-
-export function brickTextures() {
-  const S = 1024
-  const COLS = 8
-  const ROWS = 24
-  const bw = S / COLS
-  const bh = S / ROWS
-  const mortar = 5
-  const [c, ctx] = canvas(S, S)
-  const [hc, hctx] = canvas(S, S) // height: white = proud, black = recessed
-  const rand = rng(7)
-
-  ctx.fillStyle = '#5b544c'
-  ctx.fillRect(0, 0, S, S)
-  hctx.fillStyle = '#2a2a2a'
-  hctx.fillRect(0, 0, S, S)
-
-  // Draw at x, x ± S so bricks crossing the tile edge wrap seamlessly.
-  const wrapX = (x, w, fn) => {
-    for (const dx of [-S, 0, S]) if (x + dx < S && x + dx + w > 0) fn(x + dx)
-  }
-  const jag = () => (rand() - 0.5) * 2.2
-
-  for (let row = 0; row < ROWS; row++) {
-    const off = row % 2 ? bw / 2 : 0
-    for (let col = -1; col <= COLS; col++) {
-      const x0 = col * bw + off + mortar / 2
-      const y0 = row * bh + mortar / 2
-      const w = bw - mortar
-      const h = bh - mortar
-      const [r, g, b] = pickColour(rand)
-      const v = 0.68 + rand() * 0.3 // weathered: a touch darker overall
-      const fill = `rgb(${Math.min(255, r * v + jag() * 4)},${Math.min(255, g * v)},${Math.min(255, b * v)})`
-      const corners = [jag(), jag(), jag(), jag(), jag(), jag(), jag(), jag()]
-      const lift = 190 + Math.floor(rand() * 40)
-      const flash = rand() < 0.35 // darker fire-flashed end
-      const flashLeft = rand() < 0.5
-      const chips = Array.from({ length: rand() < 0.5 ? 0 : 1 + Math.floor(rand() * 2) }, () => ({
-        t: rand(),
-        edge: Math.floor(rand() * 4),
-        r: 1.2 + rand() * 2.6,
-      }))
-
-      wrapX(x0 - 4, w + 8, (x) => {
-        x += 4
-        const path = (cx) => {
-          cx.beginPath()
-          cx.moveTo(x + corners[0], y0 + corners[1])
-          cx.lineTo(x + w + corners[2], y0 + corners[3])
-          cx.lineTo(x + w + corners[4], y0 + h + corners[5])
-          cx.lineTo(x + corners[6], y0 + h + corners[7])
-          cx.closePath()
-        }
-        path(ctx)
-        ctx.fillStyle = fill
-        ctx.fill()
-        // light from above: top slightly brighter, bottom slightly darker
-        const lg = ctx.createLinearGradient(0, y0, 0, y0 + h)
-        lg.addColorStop(0, 'rgba(255,235,215,0.08)')
-        lg.addColorStop(1, 'rgba(0,0,0,0.12)')
-        ctx.fillStyle = lg
-        ctx.fill()
-        if (flash) {
-          const fg = ctx.createLinearGradient(x, 0, x + w, 0)
-          fg.addColorStop(flashLeft ? 0 : 1, 'rgba(20,10,10,0.45)')
-          fg.addColorStop(flashLeft ? 0.45 : 0.55, 'rgba(20,10,10,0)')
-          ctx.fillStyle = fg
-          ctx.fill()
-        }
-        path(hctx)
-        hctx.fillStyle = `rgb(${lift},${lift},${lift})`
-        hctx.fill()
-        // chipped edges: bites of mortar colour / depth out of the brick
-        for (const ch of chips) {
-          const px = ch.edge % 2 === 0 ? x + ch.t * w : ch.edge === 1 ? x + w : x
-          const py = ch.edge % 2 === 1 ? y0 + ch.t * h : ch.edge === 0 ? y0 : y0 + h
-          ctx.fillStyle = '#4f4841'
-          hctx.fillStyle = '#5a5a5a'
-          for (const cx of [ctx, hctx]) {
-            cx.beginPath()
-            cx.arc(px, py, ch.r, 0, Math.PI * 2)
-            cx.fill()
-          }
-        }
-      })
-    }
-  }
-
-  // Pits and speckles on the faces (both maps), wrapped.
-  for (let i = 0; i < 22000; i++) {
-    const x = rand() * S
-    const y = rand() * S
-    const sz = rand() < 0.98 ? 1 : 1.5 + rand() * 1.5 // mostly fine grit, few pits
-    const dark = rand() < 0.7
-    ctx.fillStyle = dark ? `rgba(25,15,12,${0.12 + rand() * 0.25})` : `rgba(235,215,190,${rand() * 0.18})`
-    ctx.fillRect(x, y, sz, sz)
-    if (dark && sz > 1) {
-      hctx.fillStyle = 'rgba(0,0,0,0.6)'
-      hctx.fillRect(x, y, sz, sz)
-    }
-  }
-
-  // Large-scale age: damp patches, soot and white efflorescence, wrapped in
-  // both directions so the tile edges never show.
-  const blot = (x, y, r, colour) => {
-    for (const dx of [-S, 0, S])
-      for (const dy of [-S, 0, S]) {
-        const g = ctx.createRadialGradient(x + dx, y + dy, 0, x + dx, y + dy, r)
-        g.addColorStop(0, colour)
-        g.addColorStop(1, 'rgba(0,0,0,0)')
-        ctx.fillStyle = g
-        ctx.fillRect(x + dx - r, y + dy - r, r * 2, r * 2)
-      }
-  }
-  for (let i = 0; i < 34; i++) blot(rand() * S, rand() * S, 60 + rand() * 200, `rgba(12,8,6,${0.2 + rand() * 0.32})`)
-  for (let i = 0; i < 7; i++) blot(rand() * S, rand() * S, 30 + rand() * 90, `rgba(225,222,210,${0.12 + rand() * 0.16})`)
-
-  // Fine per-pixel grain so faces read as fired clay, not flat colour.
-  const img = ctx.getImageData(0, 0, S, S)
-  const d = img.data
-  for (let i = 0; i < d.length; i += 4) {
-    const n = 0.9 + rand() * 0.2
-    d[i] *= n
-    d[i + 1] *= n
-    d[i + 2] *= n
-  }
-  ctx.putImageData(img, 0, 0)
-
-  const map = toTexture(c)
-  map.wrapS = map.wrapT = THREE.RepeatWrapping
-  const bump = new THREE.CanvasTexture(hc)
-  bump.colorSpace = THREE.NoColorSpace
-  bump.wrapS = bump.wrapT = THREE.RepeatWrapping
-  bump.anisotropy = 8
-  map.anisotropy = 8
-  return { map, bump }
 }
 
 // A repeat-specific copy of a tiled texture (shares the same pixels).
@@ -258,7 +100,7 @@ export function concreteTexture(repeat, { tone = 58 } = {}) {
 
 // ── Graffiti ───────────────────────────────────────────────────────────────
 // A spray-painted word with a glow of overspray, a dark outline, drips and
-// stray speckles. Transparent background so it sits on the brick.
+// stray speckles. Transparent background so it sits on the wall.
 export function graffitiTexture(word, { seed = 1, color, accent, w = 1024, h = 512 } = {}) {
   const [c, ctx] = canvas(w, h)
   const rand = rng(seed)
@@ -355,7 +197,7 @@ export function labelTexture(p) {
   ctx.fillStyle = '#333'
   ctx.fillText('Scott Lehman', pad, pad + 70)
   ctx.fillText(p.medium, pad, pad + 104, W - pad * 2)
-  ctx.fillText(`${p.dimensions} · ${p.year}`, pad, pad + 138)
+  ctx.fillText([p.dimensions, p.year].filter(Boolean).join(' · '), pad, pad + 138)
   ctx.font = '34px "Archivo Black", Impact, sans-serif'
   if (sold) {
     ctx.fillStyle = '#d0021b'

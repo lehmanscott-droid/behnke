@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { isSold } from '../data/paintings.js'
 
 // ---------------------------------------------------------------------------
 // ArtworkCard — a single tile on the Interactive Studio Wall
@@ -56,12 +57,18 @@ export default function ArtworkCard({ painting, onOpen, index }) {
               {painting.title}
             </h3>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-              {painting.year} · {painting.dimensions}
+              {[painting.year, painting.dimensions].filter(Boolean).join(' · ')}
             </p>
           </div>
-          <span className="shrink-0 border border-electric/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-electric">
-            {painting.price}
-          </span>
+          {isSold(painting) ? (
+            <span className="shrink-0 border border-hotpink/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-hotpink">
+              Sold
+            </span>
+          ) : (
+            <span className="shrink-0 border border-electric/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-electric">
+              {painting.price}
+            </span>
+          )}
         </div>
       </div>
 
