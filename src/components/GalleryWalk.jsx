@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ScrollControls, useScroll, useTexture } from '@react-three/drei'
@@ -28,29 +28,58 @@ const SPACING = 5 // metres between paintings
 const EYE = 1.6
 const HANG_Y = 1.55 // centre height of each painting
 const LONG_SIDE = 0.762 // 30 in
-const VIEW_DIST = 1.55 // how far from the wall we stop to look
+const FOV = 60 // vertical field of view, degrees
+const LABEL_W = 0.3
+const LABEL_H = 0.15
+const LABEL_GAP = 0.06
 
 const TAGS = ['SLA', '1 OF 1', 'RAW', 'CHI', 'STATIC', 'NO RESTOCK', 'ORIGINAL', 'WET PAINT']
 
-// `portrait`: on an upright phone the view is narrow, so stand further back
-// and aim between the painting and its label so both fit on screen.
-function layout(paintings, portrait) {
-  const dist = portrait ? 2.35 : VIEW_DIST
-  const shift = portrait ? 0.16 : 0.06 // along the wall, toward the label
+// Painting size in metres from its image aspect (long side = 30 in).
+function sizeOf(aspect = 0.8) {
+  return aspect >= 1 ? [LONG_SIDE, LONG_SIDE / aspect] : [LONG_SIDE * aspect, LONG_SIDE]
+}
+
+// Where the camera stops for each painting. It stands as close as it can
+// while the painting AND its label still fit on screen, so paintings fill
+// the view on every device. On upright phones (viewAspect < 1) the label
+// moves under the painting so the narrow screen only has to fit one width.
+// `aspects` holds each painting's image aspect once its texture has loaded.
+function layout(paintings, viewAspect, aspects) {
+  const labelBelow = viewAspect < 1
+  const tanV = Math.tan(((FOV / 2) * Math.PI) / 180)
+  const tanH = tanV * viewAspect
   const items = paintings.map((p, i) => ({
     p,
     side: i % 2 === 0 ? -1 : 1, // -1 = left wall, 1 = right wall
     z: -(i + 1) * SPACING,
+    labelBelow,
   }))
   const endZ = -(paintings.length + 1) * SPACING - 2
   const keys = [{ pos: [0, EYE, 3.5], look: [0, 1.7, -10] }]
   for (const it of items) {
-    // The label sits on the painting's right as you face it, which is -z on
-    // the left wall and +z on the right wall, i.e. `side` along z.
-    const dz = it.side * shift
+    const [w, h] = sizeOf(aspects[it.p.id])
+    let halfW, halfH, along, up
+    if (labelBelow) {
+      halfW = w / 2 + 0.05
+      halfH = (h + LABEL_GAP + LABEL_H) / 2 + 0.05
+      along = 0
+      up = -(LABEL_GAP + LABEL_H) / 2
+    } else {
+      const span = w + LABEL_GAP * 2 + LABEL_W // painting + gap + label
+      halfW = span / 2 + 0.12
+      halfH = h / 2 + 0.14
+      along = span / 2 - w / 2 // shift toward the label
+      up = 0
+    }
+    const comfort = labelBelow ? 1.06 : 1.2 // breathing room around the art
+    const dist = Math.max(halfW / tanH, halfH / tanV, 0.8) * comfort
+    // The label is on the painting's right as you face it: -z on the left
+    // wall, +z on the right wall, i.e. `side` along z.
+    const dz = it.side * along
     keys.push({
-      pos: [it.side * (HALF_W - dist), EYE, it.z + dz],
-      look: [it.side * HALF_W, HANG_Y - 0.03, it.z + dz],
+      pos: [it.side * (HALF_W - dist), HANG_Y + up + 0.04, it.z + dz],
+      look: [it.side * HALF_W, HANG_Y + up, it.z + dz],
     })
   }
   keys.push({ pos: [0, EYE, endZ + 5.5], look: [0, 2.2, endZ] })
@@ -87,14 +116,18 @@ function CameraRig({ keys, progressRef }) {
 }
 
 // ── One painting + its lamp, light pool and wall label ────────────────────
-function Painting({ p, side, z, glow, onOpen }) {
+function Painting({ p, side, z, labelBelow, glow, onOpen, onAspect }) {
   const tex = useTexture(p.canvas || p.image)
   tex.colorSpace = THREE.SRGBColorSpace
   tex.anisotropy = 8
   const label = useMemo(() => labelTexture(p), [p])
   useEffect(() => () => label.dispose(), [label])
   const aspect = tex.image.width / tex.image.height
-  const [w, h] = aspect >= 1 ? [LONG_SIDE, LONG_SIDE / aspect] : [LONG_SIDE * aspect, LONG_SIDE]
+  const [w, h] = sizeOf(aspect)
+  useEffect(() => onAspect(p.id, aspect), [onAspect, p.id, aspect])
+  const labelPos = labelBelow
+    ? [0, -h / 2 - LABEL_GAP - LABEL_H / 2, 0.004]
+    : [w / 2 + LABEL_GAP + LABEL_W / 2, -h / 2 + LABEL_H / 2 + 0.07, 0.004]
 
   return (
     <group position={[side * (HALF_W - 0.04), HANG_Y, z]} rotation={[0, -side * (Math.PI / 2), 0]}>
@@ -122,9 +155,10 @@ function Painting({ p, side, z, glow, onOpen }) {
         <planeGeometry args={[w, h]} />
         <meshBasicMaterial map={tex} toneMapped={false} />
       </mesh>
-      {/* wall label, to the right like a real gallery */}
-      <mesh position={[w / 2 + 0.26, -h / 2 + 0.14, 0.004]}>
-        <planeGeometry args={[0.3, 0.15]} />
+      {/* wall label: to the right like a real gallery, or underneath on
+          upright phones so painting + label fit the narrow screen */}
+      <mesh position={labelPos}>
+        <planeGeometry args={[LABEL_W, LABEL_H]} />
         <meshBasicMaterial map={label} toneMapped={false} />
       </mesh>
       {/* industrial lamp on an arm above */}
@@ -159,7 +193,7 @@ function Tag({ word, seed, position, rotation, size = [3, 1.5] }) {
 }
 
 // ── The room ──────────────────────────────────────────────────────────────
-function Warehouse({ items, endZ, onOpen }) {
+function Warehouse({ items, endZ, onOpen, onAspect }) {
   const length = -endZ + 8
   const midZ = (endZ + 6) / 2
   const tex = useMemo(
@@ -236,7 +270,7 @@ function Warehouse({ items, endZ, onOpen }) {
       ))}
 
       {items.map((it) => (
-        <Painting key={it.p.id} {...it} glow={tex.glow} onOpen={onOpen} />
+        <Painting key={it.p.id} {...it} glow={tex.glow} onOpen={onOpen} onAspect={onAspect} />
       ))}
 
       {/* lighting: dim warehouse fill + a warm lamp near each painting */}
@@ -267,13 +301,21 @@ function hasWebGL() {
 }
 
 export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
-  const [portrait, setPortrait] = useState(() => window.innerWidth < window.innerHeight)
+  const [viewAspect, setViewAspect] = useState(() => window.innerWidth / window.innerHeight)
   useEffect(() => {
-    const onResize = () => setPortrait(window.innerWidth < window.innerHeight)
+    const onResize = () => setViewAspect(window.innerWidth / window.innerHeight)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
-  const { items, endZ, keys } = useMemo(() => layout(paintings, portrait), [paintings, portrait])
+  const [aspects, setAspects] = useState({})
+  const onAspect = useCallback(
+    (id, a) => setAspects((prev) => (prev[id] === a ? prev : { ...prev, [id]: a })),
+    []
+  )
+  const { items, endZ, keys } = useMemo(
+    () => layout(paintings, viewAspect, aspects),
+    [paintings, viewAspect, aspects]
+  )
   const progressRef = useRef(null)
   const [fontsReady, setFontsReady] = useState(false)
   const webgl = useMemo(hasWebGL, [])
@@ -311,7 +353,7 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
       {webgl && fontsReady && (
         <Canvas
           dpr={[1, 1.5]}
-          camera={{ fov: 60, near: 0.05, far: 60, position: keys[0].pos }}
+          camera={{ fov: FOV, near: 0.05, far: 60, position: keys[0].pos }}
           gl={{ antialias: true, powerPreference: "high-performance" }}
         >
           <color attach="background" args={['#0b0b0d']} />
@@ -319,7 +361,7 @@ export default function GalleryWalk({ paintings, onOpen, onExit, paused }) {
           <Suspense fallback={null}>
             <ScrollControls pages={keys.length} damping={0.2}>
               <CameraRig keys={keys} progressRef={progressRef} />
-              <Warehouse items={items} endZ={endZ} onOpen={onOpen} />
+              <Warehouse items={items} endZ={endZ} onOpen={onOpen} onAspect={onAspect} />
             </ScrollControls>
           </Suspense>
         </Canvas>
