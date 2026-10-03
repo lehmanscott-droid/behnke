@@ -264,10 +264,13 @@ whole page (6% overlay) and faint scanlines inside panels.
 ### Artwork Tile (signature component)
 A painting in a Night Panel frame with a 1px hairline, at its natural
 proportions in the masonry. A small "01" index tag sits top-left at 40% white.
-On hover (desktop only): a slight tilt and lift (−1.2°, 1.5%), a cyan hairline
-with an inner glow, an RGB-split glitch, and a caption bar rising from the
-bottom with title, year, size and a pink-outlined price. Tiles fade up into
-view once as they scroll in.
+The index tag sits on a small 60% ink backing so it reads on light room
+photos. On hover (desktop only): a slight tilt and lift (−1.2°, 1.5%), a cyan
+hairline with an inner glow and an RGB-split glitch; the base image is never
+filtered. A caption bar with title, year, size and a cyan-outlined price rises
+from the bottom on hover and on keyboard focus, and is always shown on touch
+screens. Tiles fade up into view once as they scroll in; for reduced-motion
+visitors the tilt and rise happen instantly instead of animating.
 
 ### Viewer ("context engine")
 Full-screen over a 95% Warehouse Black blur. The painting stage takes the
@@ -308,16 +311,7 @@ with in-page links (Shipping & returns) and a "← back" button in the viewer.
 - **Don't** let neon become a large fill or background next to a painting.
 - **Don't** filter, tint or distort a painting outside a grid tile's hover.
   The RGB-split glitch belongs to grid tiles only.
-- **Don't** boost a painting's contrast or saturation on hover. The current
-  tile hover (contrast 125%, saturate 150%) is known drift, to remove in a
-  later pass.
+- **Don't** boost a painting's contrast or saturation on hover.
 - **Don't** add background music or autoplaying sound.
 - **Don't** invent collectors, sales, exhibitions or press.
 - **Don't** import three.js or the warehouse walk eagerly; it stays lazy.
-
-### Known drift (to align in a later pass)
-- Tile hover boosts contrast/saturation (see above).
-- Tile captions show the price in a pink outline; under the Live Wire Rule,
-  prices are cyan.
-- Policies section headings use all three neons (cyan, pink, acid); under the
-  Live Wire Rule they would be white or a single accent.

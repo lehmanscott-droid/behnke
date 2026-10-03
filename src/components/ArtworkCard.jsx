@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 // ---------------------------------------------------------------------------
 // Framer Motion supplies the tilt + lift on hover; the RGB-split glitch layers
 // (see index.css .glitch-r / .glitch-b) fire via the `group` hover state.
+// The base image itself is never filtered, so the painting's colours stay true.
+// The caption shows on hover, on keyboard focus, and always on touch screens
+// (no hover there), so every visitor gets the title and price.
 // Sits inside a CSS-columns masonry, so the outer wrapper controls the break.
 
 export default function ArtworkCard({ painting, onOpen, index }) {
@@ -27,7 +30,7 @@ export default function ArtworkCard({ painting, onOpen, index }) {
         alt={painting.title}
         loading="lazy"
         draggable={false}
-        className="block w-full transition-[filter] duration-300 group-hover:contrast-125 group-hover:saturate-150"
+        className="block w-full"
       />
 
       {/* RGB-split glitch layers (only visible on hover) */}
@@ -46,7 +49,7 @@ export default function ArtworkCard({ painting, onOpen, index }) {
       <span className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-300 group-hover:border-electric/70 group-hover:shadow-[inset_0_0_30px_rgba(0,229,255,0.15)]" />
 
       {/* Bottom caption bar */}
-      <div className="absolute inset-x-0 bottom-0 translate-y-1 bg-gradient-to-t from-ink-900 via-ink-900/80 to-transparent px-3 pb-3 pt-10 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+      <div className="absolute inset-x-0 bottom-0 translate-y-1 bg-gradient-to-t from-ink-900 via-ink-900/80 to-transparent px-3 pb-3 pt-10 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100">
         <div className="flex items-end justify-between gap-2">
           <div>
             <h3 className="font-display text-lg leading-none text-white">
@@ -56,14 +59,14 @@ export default function ArtworkCard({ painting, onOpen, index }) {
               {painting.year} · {painting.dimensions}
             </p>
           </div>
-          <span className="shrink-0 border border-hotpink/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-hotpink">
+          <span className="shrink-0 border border-electric/70 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-electric">
             {painting.price}
           </span>
         </div>
       </div>
 
       {/* Always-visible index tag, brutalist detail */}
-      <span className="absolute left-2 top-2 font-mono text-[10px] uppercase tracking-widest text-white/40">
+      <span className="absolute left-2 top-2 bg-ink-900/60 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white/70">
         {String(index + 1).padStart(2, '0')}
       </span>
     </motion.button>

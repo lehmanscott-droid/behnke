@@ -11,7 +11,7 @@ import { CONTACT_EMAIL } from '../config.js'
 const email = (
   <a
     href={`mailto:${CONTACT_EMAIL}`}
-    className="text-electric underline underline-offset-4 hover:text-hotpink"
+    className="text-electric underline underline-offset-4 hover:text-white"
   >
     {CONTACT_EMAIL}
   </a>
@@ -20,7 +20,6 @@ const email = (
 const sections = [
   {
     title: 'Shipping',
-    accent: 'text-electric',
     items: [
       <>Every painting is an original, one of one. It ships from Chicago within 5 business days of your purchase.</>,
       <>We ship within the United States for a flat $50, which covers packing and insurance for the full purchase price. Outside the US? Send an inquiry from any painting and we'll quote shipping to you.</>,
@@ -32,7 +31,6 @@ const sections = [
   },
   {
     title: 'Returns & refunds',
-    accent: 'text-hotpink',
     items: [
       <>You can return a painting within 14 days of delivery. Email {email} first, before sending anything back.</>,
       <>The painting must come back in the same condition, in its original packaging, with its certificate of authenticity. You pay return shipping and must insure it for the full purchase price.</>,
@@ -43,7 +41,6 @@ const sections = [
   },
   {
     title: 'Commissions',
-    accent: 'text-acid',
     items: [
       <>Want a painting made for you, in your colors or a specific size? Commissions are open. Email {email} or send an inquiry from any painting and tell us what you have in mind.</>,
     ],
@@ -60,7 +57,7 @@ export default function Policies() {
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-10">
           {sections.map((s) => (
             <div key={s.title}>
-              <h2 className={`font-display text-2xl uppercase leading-none ${s.accent}`}>
+              <h2 className="font-display text-2xl uppercase leading-none text-white">
                 {s.title}
               </h2>
               <ul className="mt-6 space-y-4 font-mono text-xs leading-relaxed text-neutral-300">
