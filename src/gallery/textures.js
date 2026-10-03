@@ -197,7 +197,7 @@ export function labelTexture(p) {
   ctx.fillStyle = '#333'
   ctx.fillText('Scott Lehman', pad, pad + 70)
   ctx.fillText(p.medium, pad, pad + 104, W - pad * 2)
-  ctx.fillText(`${p.dimensions} · ${p.year}`, pad, pad + 138)
+  ctx.fillText([p.dimensions, p.year].filter(Boolean).join(' · '), pad, pad + 138)
   ctx.font = '34px "Archivo Black", Impact, sans-serif'
   if (sold) {
     ctx.fillStyle = '#d0021b'

@@ -89,7 +89,7 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
               <div className="flex items-start justify-between border-b border-white/10 px-6 py-5">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-                    {painting.year} · No.{painting.id}
+                    {[painting.year, `No.${painting.id}`].filter(Boolean).join(' · ')}
                   </p>
                   <h2 className="mt-1 font-display text-3xl leading-none text-white">
                     {painting.title}
@@ -108,8 +108,8 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
               <div className="flex-1 overflow-y-auto px-6 py-5">
                 {/* Spec grid */}
                 <dl className="grid grid-cols-2 gap-px overflow-hidden border border-white/10 bg-white/10 text-sm">
-                  <Spec label="Dimensions" value={painting.dimensions} />
-                  <Spec label="Year" value={String(painting.year)} />
+                  <Spec label="Dimensions" value={painting.dimensions} span={!painting.year} />
+                  {painting.year && <Spec label="Year" value={String(painting.year)} />}
                   <Spec label="Medium" value={painting.medium} span />
                   <Spec label="Price" value={painting.price} accent="electric" />
                   <Spec label="Status" value={painting.status} accent="pink" />
