@@ -24,6 +24,12 @@ the right, plus a **Studio Light Switch** that re-lights the piece:
 _Dim Gallery Spotlight_, _Daylight Studio_, and _UV Blacklight Look_ (driven by
 CSS filters + drop-shadows).
 
+**Warehouse Walk** (`components/GalleryWalk.jsx`) — "Enter the warehouse" opens a
+3D graffiti warehouse corridor (React Three Fiber). Scroll or swipe to walk past
+each painting at true size, with a gallery wall label (title, medium, size,
+price or a red "sold" dot); tap a painting to open its popup and buy.
+Lazy-loaded, so three.js only downloads when someone enters.
+
 **Macro Texture Zoom** (`components/TextureZoom.jsx`) — inside the modal. On
 desktop the cursor becomes a magnifying lens that tracks the mouse over the
 hi-res image; on touch devices it's **pinch-to-zoom + double-tap** (Framer

@@ -9,4 +9,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/',
   plugins: [react()],
+  // The 3D warehouse chunk (three.js) is ~850 kB minified / ~230 kB gzipped.
+  // It's lazy-loaded only when someone opens the walk, so the warning about
+  // large chunks doesn't apply to the first page load.
+  build: { chunkSizeWarningLimit: 1000 },
 })
