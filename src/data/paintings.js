@@ -266,18 +266,18 @@ export const paintings = [
       'A black-and-white field split by sprayed bars into panels of checkerboard, honeycomb and dot stencils, with a band of heavy black drips across the top.',
   },
   {
-    id: 'purple-and-gold',
-    title: 'Purple & Gold',
+    id: 'mamba',
+    title: 'Mamba',
     year: 2022,
     dimensions: '40 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Framed (black frame included)',
-    price: '$480',
+    price: '$600',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/00w9AU7ZydKa77bdP653O0h', // live — one sale, then deactivates
-    image: asset('artwork/purple-and-gold-web.jpg'),
-    hiRes: asset('artwork/purple-and-gold.jpg'),
-    canvas: asset('artwork/purple-and-gold-canvas.jpg'),
+    stripeLink: 'https://buy.stripe.com/5kQ5kEcfOeOe6378uM53O0j', // live — one sale, then deactivates
+    image: asset('artwork/mamba-web.jpg'),
+    hiRes: asset('artwork/mamba.jpg'),
+    canvas: asset('artwork/mamba-canvas.jpg'),
     notes:
       'A stencilled portrait in a purple jersey over a textured violet and teal ground, splashed with gold paint.',
   },
