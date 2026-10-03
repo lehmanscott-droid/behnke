@@ -33,7 +33,7 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[65] flex items-stretch bg-ink-900/95 backdrop-blur-md"
+          className="fixed inset-0 z-[65] flex items-stretch overflow-y-auto bg-ink-900/95 backdrop-blur-md lg:overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -41,7 +41,9 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
           aria-modal="true"
           aria-label={painting.title}
         >
-          <div className="flex h-full w-full flex-col lg:flex-row">
+          {/* Phones: the whole sheet scrolls (stage on top, panel below) and the
+              CTA sticks to the bottom edge. Desktop: side-by-side, fixed height. */}
+          <div className="flex min-h-full w-full flex-col lg:h-full lg:flex-row">
             {/* ---------------------------------------------------------- */}
             {/* LEFT — viewing wall + texture zoom                          */}
             {/* ---------------------------------------------------------- */}
@@ -133,7 +135,7 @@ export default function ArtworkModal({ painting, onClose, onBuy }) {
               </div>
 
               {/* Sticky CTA */}
-              <div className="border-t border-white/10 bg-ink-800 p-5">
+              <div className="sticky bottom-0 z-10 border-t border-white/10 bg-ink-800 p-5">
                 <button
                   onClick={() => onBuy(painting)}
                   className="group relative w-full overflow-hidden border-2 border-hotpink px-5 py-4 font-display text-lg uppercase tracking-wide text-white transition-colors hover:bg-hotpink hover:text-ink-900"
