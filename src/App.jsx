@@ -5,6 +5,7 @@ import StudioWall from './components/StudioWall.jsx'
 import ArtworkModal from './components/ArtworkModal.jsx'
 import CheckoutCart from './components/CheckoutCart.jsx'
 import AudioPlayer from './components/AudioPlayer.jsx'
+import Policies from './components/Policies.jsx'
 
 // ---------------------------------------------------------------------------
 // App — composition root
@@ -25,6 +26,16 @@ export default function App() {
   // so closing the cart returns the viewer to the piece they were inspecting.
   const openCheckout = (p) => setCheckout(p)
   const closeCheckout = () => setCheckout(null)
+
+  // "Shipping & returns" link inside the checkout: close both overlays and
+  // scroll the page to the policies section underneath.
+  const showPolicies = () => {
+    setCheckout(null)
+    setActive(null)
+    requestAnimationFrame(() =>
+      document.getElementById('policies')?.scrollIntoView({ behavior: 'smooth' })
+    )
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -67,11 +78,20 @@ export default function App() {
         <StudioWall paintings={paintings} onOpen={openModal} />
       </main>
 
+      {/* Shipping, returns & commissions */}
+      <Policies />
+
       {/* Footer */}
-      <footer className="border-t border-white/10 px-4 py-10 sm:px-6">
+      {/* Extra bottom padding on phones so the floating vinyl player never covers the footer. */}
+      <footer className="border-t border-white/10 px-4 pb-32 pt-10 sm:px-6 sm:pb-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
           <span>Scott Lehman Art</span>
-          <span>All works © the artist · Originals available</span>
+          <span>
+            All works © the artist · Originals available ·{' '}
+            <a href="#policies" className="underline underline-offset-4 hover:text-electric">
+              Shipping &amp; returns
+            </a>
+          </span>
         </div>
       </footer>
 
@@ -79,7 +99,7 @@ export default function App() {
       {/* Overlays (never wrap the AudioPlayer)                             */}
       {/* ----------------------------------------------------------------- */}
       <ArtworkModal painting={active} onClose={closeModal} onBuy={openCheckout} />
-      <CheckoutCart painting={checkout} onClose={closeCheckout} />
+      <CheckoutCart painting={checkout} onClose={closeCheckout} onShowPolicies={showPolicies} />
 
       {/* Persistent, independent audio engine */}
       <AudioPlayer />

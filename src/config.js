@@ -11,6 +11,10 @@
 // Until you fill these in, the checkout still opens and explains what to add.
 // ---------------------------------------------------------------------------
 
+// ── Contact ────────────────────────────────────────────────────────────────
+// Shown publicly in the Shipping & Returns section (src/components/Policies.jsx).
+export const CONTACT_EMAIL = 'lehman.scott@gmail.com'
+
 // ── Formspree ──────────────────────────────────────────────────────────────
 // 1. Sign up (free) at https://formspree.io and create a new form.
 // 2. It gives you an endpoint like  https://formspree.io/f/mldabcpq

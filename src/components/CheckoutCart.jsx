@@ -19,7 +19,7 @@ import { formspreeEndpoint } from '../config.js'
 
 const EMPTY = { name: '', address: '', email: '', message: '' }
 
-export default function CheckoutCart({ painting, onClose }) {
+export default function CheckoutCart({ painting, onClose, onShowPolicies }) {
   const [form, setForm] = useState(EMPTY)
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [errorMsg, setErrorMsg] = useState('')
@@ -196,6 +196,19 @@ export default function CheckoutCart({ painting, onClose }) {
                       ) : (
                         <>Add this piece's Stripe Payment Link in paintings.js to enable.</>
                       )}
+                    </p>
+                    <p className="mt-1 font-mono text-[10px] leading-relaxed text-neutral-500">
+                      US shipping $50, insured · Ships in 5 business days · 14-day returns ·{' '}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleClose()
+                          onShowPolicies?.()
+                        }}
+                        className="underline underline-offset-2 hover:text-electric"
+                      >
+                        Shipping &amp; returns
+                      </button>
                     </p>
                   </div>
 
