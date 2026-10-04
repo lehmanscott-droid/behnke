@@ -48,9 +48,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/fZueVea7G49Advz26o53O03', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/28EfZi3Ji7lM3UZbGY53O0q', // live — one sale, then deactivates
     image: asset('artwork/pink-static-web.jpg'),
     hiRes: asset('artwork/pink-static.jpg'),
     canvas: asset('artwork/pink-static-canvas.jpg'),
@@ -64,9 +64,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/5kQ3cw7Zy8pQdvzeTa53O04', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/28EaEYfs0fSi6378uM53O0r', // live — one sale, then deactivates
     image: asset('artwork/tidewrack-web.jpg'),
     hiRes: asset('artwork/tidewrack.jpg'),
     canvas: asset('artwork/tidewrack-canvas.jpg'),
@@ -80,9 +80,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/eVq6oIenWgWmezD6mE53O05', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/28EfZia7GfSi0INaCU53O0s', // live — one sale, then deactivates
     image: asset('artwork/bleeding-standard-web.jpg'),
     hiRes: asset('artwork/bleeding-standard.jpg'),
     canvas: asset('artwork/bleeding-standard-canvas.jpg'),
@@ -96,9 +96,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/7sYdRadjS9tUbnrbGY53O06', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/28EfZi5RqaxYajn6mE53O0t', // live — one sale, then deactivates
     image: asset('artwork/verdigris-web.jpg'),
     hiRes: asset('artwork/verdigris.jpg'),
     canvas: asset('artwork/verdigris-canvas.jpg'),
@@ -112,9 +112,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/8x2fZi2FecG64Z3dP653O07', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/9B69AU4NmfSi77b3as53O0u', // live — one sale, then deactivates
     image: asset('artwork/nightshade-web.jpg'),
     hiRes: asset('artwork/nightshade.jpg'),
     canvas: asset('artwork/nightshade-canvas.jpg'),
@@ -128,9 +128,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/7sY8wQfs00XogHLaCU53O08', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/dRmdRagw40Xo4Z36mE53O0v', // live — one sale, then deactivates
     image: asset('artwork/backporch-web.jpg'),
     hiRes: asset('artwork/backporch.jpg'),
     canvas: asset('artwork/backporch-canvas.jpg'),
@@ -144,9 +144,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/eVqeVe7Zy7lM8bf12k53O09', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/9B600k1Ba9tU2QV12k53O0w', // live — one sale, then deactivates
     image: asset('artwork/understory-web.jpg'),
     hiRes: asset('artwork/understory.jpg'),
     canvas: asset('artwork/understory-canvas.jpg'),
@@ -160,9 +160,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/14AfZi1Ba49AezD12k53O0a', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/bJe14obbK7lMcrv3as53O0x', // live — one sale, then deactivates
     image: asset('artwork/rust-signal-web.jpg'),
     hiRes: asset('artwork/rust-signal.jpg'),
     canvas: asset('artwork/rust-signal-canvas.jpg'),
@@ -176,9 +176,9 @@ export const paintings = [
     dimensions: '30 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/4gM3cwdjS7lM2QVh1i53O0b', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/6oU00kcfOcG68bfdP653O0y', // live — one sale, then deactivates
     image: asset('artwork/groundwater-web.jpg'),
     hiRes: asset('artwork/groundwater.jpg'),
     canvas: asset('artwork/groundwater-canvas.jpg'),
@@ -192,9 +192,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/00w9AUdjS6hI2QV3as53O0c', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/5kQ7sM2Fe5dEdvz6mE53O0z', // live — one sale, then deactivates
     image: asset('artwork/floor-plan-web.jpg'),
     hiRes: asset('artwork/floor-plan.jpg'),
     canvas: asset('artwork/floor-plan-canvas.jpg'),
@@ -208,9 +208,9 @@ export const paintings = [
     dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$720',
+    price: '$1,440',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/8x228s93CbC21MR6mE53O0d', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/4gM8wQa7GgWmcrv8uM53O0A', // live — one sale, then deactivates
     image: asset('artwork/along-the-way-web.jpg'),
     hiRes: asset('artwork/along-the-way.jpg'),
     canvas: asset('artwork/along-the-way-canvas.jpg'),
@@ -224,9 +224,9 @@ export const paintings = [
     dimensions: '24 × 24 in',
     medium: 'Acrylic and Mixed Texture',
     framing: 'Framed (gold frame included)',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/4gM9AUbbKdKafDH26o53O0e', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/9B6cN65RqaxY4Z3dP653O0B', // live — one sale, then deactivates
     image: asset('artwork/open-heart-web.jpg'),
     hiRes: asset('artwork/open-heart.jpg'),
     canvas: asset('artwork/open-heart-canvas.jpg'),
@@ -240,9 +240,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Boxing Gloves, Acrylic, and Mixed Texture on Canvas',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/5kQ14o4Nm8pQbnr8uM53O0f', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/fZu00kbbKdKagHL12k53O0C', // live — one sale, then deactivates
     image: asset('artwork/gloves-off-web.jpg'),
     hiRes: asset('artwork/gloves-off.jpg'),
     canvas: asset('artwork/gloves-off-canvas.jpg'),
@@ -256,9 +256,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/5kQcN6bbK8pQbnrdP653O0g', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/cNi5kE3Ji21s637h1i53O0D', // live — one sale, then deactivates
     image: asset('artwork/fault-lines-web.jpg'),
     hiRes: asset('artwork/fault-lines.jpg'),
     canvas: asset('artwork/fault-lines-canvas.jpg'),
@@ -272,9 +272,9 @@ export const paintings = [
     dimensions: '40 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Framed (black frame included)',
-    price: '$600',
+    price: '$1,200',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/5kQ5kEcfOeOe6378uM53O0j', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/5kQaEY4Nm0Xo8bf26o53O0E', // live — one sale, then deactivates
     image: asset('artwork/mamba-web.jpg'),
     hiRes: asset('artwork/mamba.jpg'),
     canvas: asset('artwork/mamba-canvas.jpg'),
@@ -288,9 +288,9 @@ export const paintings = [
     dimensions: '48 × 60 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$720',
+    price: '$1,440',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/00w14o2FefSi8bf4ew53O0i', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/aFabJ22FebC24Z326o53O0F', // live — one sale, then deactivates
     image: asset('artwork/always-beside-you-web.jpg'),
     hiRes: asset('artwork/always-beside-you.jpg'),
     canvas: asset('artwork/always-beside-you-canvas.jpg'),
@@ -304,9 +304,9 @@ export const paintings = [
     dimensions: '30 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/3cIaEY2Fe7lM6374ew53O0k', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/cNi5kE2Fe6hIcrv7qI53O0G', // live — one sale, then deactivates
     image: asset('artwork/lucky-web.jpg'),
     hiRes: asset('artwork/lucky.jpg'),
     canvas: asset('artwork/lucky-canvas.jpg'),
@@ -320,9 +320,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/14A00kgw40Xo3UZ3as53O0l', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/00w6oIcfO8pQ2QV9yQ53O0H', // live — one sale, then deactivates
     image: asset('artwork/wildfire-web.jpg'),
     hiRes: asset('artwork/wildfire.jpg'),
     canvas: asset('artwork/wildfire-canvas.jpg'),
@@ -336,9 +336,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/eVqeVe6Vu8pQ2QVeTa53O0m', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/eVqfZia7G8pQbnr7qI53O0I', // live — one sale, then deactivates
     image: asset('artwork/cold-front-web.jpg'),
     hiRes: asset('artwork/cold-front.jpg'),
     canvas: asset('artwork/cold-front-canvas.jpg'),
@@ -352,9 +352,9 @@ export const paintings = [
     dimensions: '20 × 16 in',
     medium: 'Acrylic and Mixed Texture',
     framing: 'Unframed',
-    price: '$200',
+    price: '$400',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/8x27sM1Ba49A0IN12k53O0n', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/eVq3cw4Nm5dEdvzbGY53O0J', // live — one sale, then deactivates
     image: asset('artwork/burnout-web.jpg'),
     hiRes: asset('artwork/burnout.jpg'),
     canvas: asset('artwork/burnout-canvas.jpg'),
@@ -368,9 +368,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/8x25kE93CdKacrv7qI53O0o', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/28E00kfs021s3UZ26o53O0K', // live — one sale, then deactivates
     image: asset('artwork/riptide-web.jpg'),
     hiRes: asset('artwork/riptide.jpg'),
     canvas: asset('artwork/riptide-canvas.jpg'),
@@ -384,9 +384,9 @@ export const paintings = [
     dimensions: '24 × 30 in',
     medium: 'Boxing Gloves, Acrylic, and Mixed Texture on Canvas',
     framing: 'Unframed',
-    price: '$480',
+    price: '$960',
     status: 'Original Available',
-    stripeLink: 'https://buy.stripe.com/28E6oIgw45dEdvzaCU53O0p', // live — one sale, then deactivates
+    stripeLink: 'https://buy.stripe.com/14AaEYbbKfSi0IN7qI53O0L', // live — one sale, then deactivates
     image: asset('artwork/silver-lining-web.jpg'),
     hiRes: asset('artwork/silver-lining.jpg'),
     canvas: asset('artwork/silver-lining-canvas.jpg'),
