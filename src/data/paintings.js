@@ -413,7 +413,7 @@ export const paintings = [
     id: 'overgrown',
     title: 'Overgrown',
     year: 2024,
-    dimensions: '18 × 48 in',
+    dimensions: '24 × 48 in',
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$600',
