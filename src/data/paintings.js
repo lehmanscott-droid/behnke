@@ -42,6 +42,22 @@ export const paintings = [
       'Hot pink roses and lace stencils scattered over a dark green ground, spattered with neon green and layered with violet netting. Made for a private collector.',
   },
   {
+    id: 'my-best',
+    title: 'My Best',
+    year: 2023,
+    dimensions: '48 × 60 in',
+    medium: 'Acrylic and Mixed Texture',
+    framing: null,
+    price: null,
+    status: 'Sold',
+    stripeLink: '',
+    image: asset('artwork/my-best-web.jpg'),
+    hiRes: asset('artwork/my-best.jpg'),
+    canvas: asset('artwork/my-best-canvas.jpg'),
+    notes:
+      'Black on black: a heavy ground carved and combed into ridges, rings and arrows, with a few marks picked out in pale grey so the surface reads like a map in the dark. In a private collection.',
+  },
+  {
     id: 'pink-static',
     title: 'Pink Static',
     year: 2026,
@@ -392,6 +408,22 @@ export const paintings = [
     canvas: asset('artwork/silver-lining-canvas.jpg'),
     notes:
       'A pair of boxing gloves cast in silver and mounted heel-to-heel into a heart, tied off with a looping white cord over a charcoal ground of scraped black and grey and soft sprayed shadows.',
+  },
+  {
+    id: 'overgrown',
+    title: 'Overgrown',
+    year: 2024,
+    dimensions: '18 × 48 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$600',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/aFa8wQcfO0XodvzcL253O0M', // live — one sale, then deactivates
+    image: asset('artwork/overgrown-web.jpg'),
+    hiRes: asset('artwork/overgrown.jpg'),
+    canvas: asset('artwork/overgrown-canvas.jpg'),
+    notes:
+      'A tall, tangled garden: combed spirals, lattice stencils and gold flecks over deep green, with four sculpted hot-pink roses rising on dark vines at the bottom.',
   },
 ]
 
