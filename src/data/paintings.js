@@ -425,6 +425,54 @@ export const paintings = [
     notes:
       'A tall, tangled garden: combed spirals, lattice stencils and gold flecks over deep green, with four sculpted hot-pink roses rising on dark vines at the bottom.',
   },
+  {
+    id: 'six-strings',
+    title: 'Six Strings',
+    year: 2024,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$960',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/fZu28s7Zy9tU4Z3dP653O0N', // live — one sale, then deactivates
+    image: asset('artwork/six-strings-web.jpg'),
+    hiRes: asset('artwork/six-strings.jpg'),
+    canvas: asset('artwork/six-strings-canvas.jpg'),
+    notes:
+      'Six thick, raised bars of violet, cobalt, turquoise and hot pink stand out from a smoky olive ground stencilled with lattice and sprayed black curves.',
+  },
+  {
+    id: 'flashpoint',
+    title: 'Flashpoint',
+    year: 2023,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$960',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/eVqcN67ZyeOe63712k53O0O', // live — one sale, then deactivates
+    image: asset('artwork/flashpoint-web.jpg'),
+    hiRes: asset('artwork/flashpoint.jpg'),
+    canvas: asset('artwork/flashpoint-canvas.jpg'),
+    notes:
+      'A blast of yellow and orange burning out through red into violet, laced with white and purple drips and grid-stencilled haze.',
+  },
+  {
+    id: 'checkpoint',
+    title: 'Checkpoint',
+    year: 2024,
+    dimensions: '24 × 30 in',
+    medium: 'Acrylic and Mixed Texture',
+    framing: 'Unframed',
+    price: '$960',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/dRmdRa4Nm35wbnraCU53O0P', // live — one sale, then deactivates
+    image: asset('artwork/checkpoint-web.jpg'),
+    hiRes: asset('artwork/checkpoint.jpg'),
+    canvas: asset('artwork/checkpoint-canvas.jpg'),
+    notes:
+      'A black-and-white checkerboard grid scattered with small hand-drawn marks and blocks of pink, blue, violet and gold, like a map of moves.',
+  },
 ]
 
 // A sold piece stays on the wall as portfolio work: no price, no checkout.
