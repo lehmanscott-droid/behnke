@@ -11,6 +11,8 @@
 //                (*-canvas.jpg). Hung on the walls of the 3D warehouse walk.
 //                Optional: without it the walk falls back to `image`.
 //   - `framing`: shown in the modal — say plainly what the buyer gets
+//   - `shipping`: optional; only for pieces whose Stripe link charges more
+//                than the standard $50 (shown in checkout). Default '$50'.
 //
 // Every piece hangs on the same wall at true scale; make the photos with
 // scripts/mockup/mockup.py. To add a piece, run it, then copy a block.
@@ -513,6 +515,7 @@ export const paintings = [
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$1,440',
+    shipping: '$200', // oversized: its Stripe link uses a $200 shipping rate
     status: 'Original Available',
     stripeLink: '', // Stripe link pending
     image: asset('artwork/undertow-web.jpg'),

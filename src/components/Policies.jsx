@@ -6,7 +6,8 @@ import { CONTACT_EMAIL } from '../config.js'
 // Plain-language terms for one-of-one originals: ships from Chicago within
 // 5 business days, US only at a flat $50 (insured), 14-day returns, damage
 // reported within 7 days. Edit the copy here when the policy changes, and
-// keep it in step with the $50 shipping rate on the Stripe Payment Links.
+// keep it in step with the shipping rates on the Stripe Payment Links ($50,
+// or a painting's own `shipping` in paintings.js for oversized work).
 
 const email = (
   <a
@@ -22,7 +23,7 @@ const sections = [
     title: 'Shipping',
     items: [
       <>Every painting is an original, one of one. It ships from Chicago within 5 business days of your purchase.</>,
-      <>We ship within the United States for a flat $50, which covers packing and insurance for the full purchase price. Outside the US? Send an inquiry from any painting and we'll quote shipping to you.</>,
+      <>We ship within the United States for a flat $50, which covers packing and insurance for the full purchase price. A few oversized pieces cost more to crate and ship; their rate is shown on the listing and at checkout. Outside the US? Send an inquiry from any painting and we'll quote shipping to you.</>,
       <>Each painting is wrapped, protected at the corners and boxed for the trip.</>,
       <>Paintings ship unframed and wired, ready to hang, unless the listing says a frame is included.</>,
       <>Each painting comes with a signed certificate of authenticity.</>,
@@ -34,7 +35,7 @@ const sections = [
     items: [
       <>You can return a painting within 14 days of delivery. Email {email} first, before sending anything back.</>,
       <>The painting must come back in the same condition, in its original packaging, with its certificate of authenticity. You pay return shipping and must insure it for the full purchase price.</>,
-      <>Once it arrives back in the same condition, we refund the full painting price. The original $50 shipping isn't refunded.</>,
+      <>Once it arrives back in the same condition, we refund the full painting price. The original shipping charge isn't refunded.</>,
       <>If your painting arrives damaged, email {email} within 7 days of delivery with photos of the painting and the box, and keep all the packaging (the carrier needs it for the insurance claim). We'll arrange a repair or a full refund, shipping included.</>,
       <>Approved refunds go back to your original payment method.</>,
     ],
