@@ -484,7 +484,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$960',
     status: 'Original Available',
-    stripeLink: '', // Stripe link pending
+    stripeLink: 'https://buy.stripe.com/00wdRa6VugWmgHLeTa53O0Q', // live — one sale, then deactivates
     image: asset('artwork/signal-bleed-web.jpg'),
     hiRes: asset('artwork/signal-bleed.jpg'),
     canvas: asset('artwork/signal-bleed-canvas.jpg'),
@@ -500,7 +500,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$960',
     status: 'Original Available',
-    stripeLink: '', // Stripe link pending
+    stripeLink: 'https://buy.stripe.com/fZu5kEfs06hI0INaCU53O0R', // live — one sale, then deactivates
     image: asset('artwork/southpaw-heart-web.jpg'),
     hiRes: asset('artwork/southpaw-heart.jpg'),
     canvas: asset('artwork/southpaw-heart-canvas.jpg'),
@@ -516,7 +516,7 @@ export const paintings = [
     framing: 'Unframed',
     price: '$1,440',
     status: 'Original Available',
-    stripeLink: '', // Stripe link pending
+    stripeLink: 'https://buy.stripe.com/5kQ9AU0x68pQezD12k53O0S', // live — one sale, then deactivates
     image: asset('artwork/undertow-web.jpg'),
     hiRes: asset('artwork/undertow.jpg'),
     canvas: asset('artwork/undertow-canvas.jpg'),

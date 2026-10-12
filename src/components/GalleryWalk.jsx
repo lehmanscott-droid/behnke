@@ -19,8 +19,9 @@ import {
 // entrance, each painting, the end wall — via the big Back / Next buttons, a
 // single quick swipe, one mouse-wheel notch, or the arrow keys. The camera
 // glides between stops along a fixed path.
-// Paintings alternate left/right walls at their true size (the long side of a
-// 24 × 30 in canvas = 0.762 m), each with a gallery wall label. Tapping a
+// Paintings alternate left/right walls at their true size (read from each
+// piece's `dimensions`, so a 48 × 60 in canvas hangs at 1.22 × 1.52 m), each
+// with a gallery wall label. Tapping a
 // painting calls onOpen(painting), which opens the normal ArtworkModal on top,
 // so buying works exactly as it does from the grid. New entries in
 // paintings.js get a spot on the wall automatically.
@@ -30,7 +31,8 @@ const WALL_H = 4.4
 const SPACING = 5 // metres between paintings
 const EYE = 1.6
 const HANG_Y = 1.55 // centre height of each painting
-const LONG_SIDE = 0.762 // 30 in
+const INCH = 0.0254 // metres
+const LONG_SIDE = 30 * INCH // fallback when a piece has no `dimensions`
 const FOV = 60 // vertical field of view, degrees
 const LABEL_W = 0.3
 const LABEL_H = 0.15
@@ -42,9 +44,16 @@ const WALL_TILE = 1.2 // metres of wall per concrete tile (6 board-form courses)
 const WALL_MAP = import.meta.env.BASE_URL + 'textures/concrete-wall.jpg'
 const WALL_BUMP = import.meta.env.BASE_URL + 'textures/concrete-wall-bump.jpg'
 
-// Painting size in metres from its image aspect (long side = 30 in).
-function sizeOf(aspect = 0.8) {
-  return aspect >= 1 ? [LONG_SIDE, LONG_SIDE / aspect] : [LONG_SIDE * aspect, LONG_SIDE]
+// Painting size in metres: the long side comes from its `dimensions`
+// ('48 × 60 in'), the orientation and proportions from its image aspect.
+function longSide(p) {
+  const n = (p.dimensions || '').match(/\d+(\.\d+)?/g)
+  return n ? Math.max(...n.slice(0, 2).map(Number)) * INCH : LONG_SIDE
+}
+
+function sizeOf(p, aspect = 0.8) {
+  const long = longSide(p)
+  return aspect >= 1 ? [long, long / aspect] : [long * aspect, long]
 }
 
 // Where the camera stops for each painting. It stands as close as it can
@@ -65,7 +74,7 @@ function layout(paintings, viewAspect, aspects) {
   const endZ = -(paintings.length + 1) * SPACING - 2
   const keys = [{ pos: [0, EYE, 3.5], look: [0, 1.7, -10] }]
   for (const it of items) {
-    const [w, h] = sizeOf(aspects[it.p.id])
+    const [w, h] = sizeOf(it.p, aspects[it.p.id])
     let halfW, halfH, along, up
     if (labelBelow) {
       halfW = w / 2 + 0.05
@@ -136,7 +145,7 @@ function Painting({ p, side, z, labelBelow, glow, onOpen, onAspect }) {
   const label = useMemo(() => labelTexture(p), [p])
   useEffect(() => () => label.dispose(), [label])
   const aspect = tex.image.width / tex.image.height
-  const [w, h] = sizeOf(aspect)
+  const [w, h] = sizeOf(p, aspect)
   useEffect(() => onAspect(p.id, aspect), [onAspect, p.id, aspect])
   const labelPos = labelBelow
     ? [0, -h / 2 - LABEL_GAP - LABEL_H / 2, 0.004]
