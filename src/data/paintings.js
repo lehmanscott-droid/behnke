@@ -515,7 +515,6 @@ export const paintings = [
     medium: 'Spray Paint, Acrylic, and Mixed Texture',
     framing: 'Unframed',
     price: '$1,440',
-    shipping: '$200', // oversized: its Stripe link uses a $200 shipping rate
     status: 'Original Available',
     stripeLink: '', // Stripe link pending
     image: asset('artwork/undertow-web.jpg'),
