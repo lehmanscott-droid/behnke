@@ -198,7 +198,7 @@ export default function CheckoutCart({ painting, onClose, onShowPolicies }) {
                       )}
                     </p>
                     <p className="mt-1 font-mono text-[10px] leading-relaxed text-neutral-500">
-                      US shipping $50, insured · Ships in 5 business days · 14-day returns ·{' '}
+                      US shipping {painting.shipping || '$50'}, insured · Ships in 5 business days · 14-day returns ·{' '}
                       <button
                         type="button"
                         onClick={() => {

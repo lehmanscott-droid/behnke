@@ -11,6 +11,8 @@
 //                (*-canvas.jpg). Hung on the walls of the 3D warehouse walk.
 //                Optional: without it the walk falls back to `image`.
 //   - `framing`: shown in the modal — say plainly what the buyer gets
+//   - `shipping`: optional; only for pieces whose Stripe link charges more
+//                than the standard $50 (shown in checkout). Default '$50'.
 //
 // Every piece hangs on the same wall at true scale; make the photos with
 // scripts/mockup/mockup.py. To add a piece, run it, then copy a block.
@@ -472,6 +474,54 @@ export const paintings = [
     canvas: asset('artwork/checkpoint-canvas.jpg'),
     notes:
       'A black-and-white checkerboard grid scattered with small hand-drawn marks and blocks of pink, blue, violet and gold, like a map of moves.',
+  },
+  {
+    id: 'signal-bleed',
+    title: 'Signal Bleed',
+    year: 2023,
+    dimensions: '24 × 30 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$960',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/00wdRa6VugWmgHLeTa53O0Q', // live — one sale, then deactivates
+    image: asset('artwork/signal-bleed-web.jpg'),
+    hiRes: asset('artwork/signal-bleed.jpg'),
+    canvas: asset('artwork/signal-bleed-canvas.jpg'),
+    notes:
+      'Hard black diagonals slice hot pink, yellow and electric blue into panels of brick, grid and halftone stencils, with teal drips and a hand-cut letter band across the middle.',
+  },
+  {
+    id: 'southpaw-heart',
+    title: 'Southpaw Heart',
+    year: 2023,
+    dimensions: '24 × 30 in',
+    medium: 'Boxing Gloves, Acrylic, and Mixed Texture on Canvas',
+    framing: 'Unframed',
+    price: '$960',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/fZu5kEfs06hI0INaCU53O0R', // live — one sale, then deactivates
+    image: asset('artwork/southpaw-heart-web.jpg'),
+    hiRes: asset('artwork/southpaw-heart.jpg'),
+    canvas: asset('artwork/southpaw-heart-canvas.jpg'),
+    notes:
+      'A real pair of boxing gloves, splattered in red, sky blue and navy, mounted into a heart that stands 4 in off a scraped white impasto ground, trailed by a painted black string.',
+  },
+  {
+    id: 'undertow',
+    title: 'Undertow',
+    year: 2023,
+    dimensions: '48 × 60 in',
+    medium: 'Spray Paint, Acrylic, and Mixed Texture',
+    framing: 'Unframed',
+    price: '$1,440',
+    status: 'Original Available',
+    stripeLink: 'https://buy.stripe.com/5kQ9AU0x68pQezD12k53O0S', // live — one sale, then deactivates
+    image: asset('artwork/undertow-web.jpg'),
+    hiRes: asset('artwork/undertow.jpg'),
+    canvas: asset('artwork/undertow-canvas.jpg'),
+    notes:
+      'A deep teal and violet field churned with lace and honeycomb stencils, red spray dots and fast seafoam-green strokes, crossed by two dark bars like something seen from under water.',
   },
 ]
 
